@@ -403,7 +403,7 @@ export default function HanaRCPSLandingPage() {
               <div className="mt-4 rounded-2xl bg-violet-600 p-5 text-sm leading-7 text-white shadow-lg">
                 어린왕자는 상상력, 관계, 책임이라는 주제를 쉽게 이해할 수 있게 도와줍니다. BookQuest는 아이의 관심사에 맞춰 질문과 독후 활동을 추천합니다.
               </div>
-              <a href="https://bookquest.co" target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center text-sm font-bold text-violet-700">
+              <a href="https://bookquest.co.kr" target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center text-sm font-bold text-violet-700">
                 BookQuest 바로가기 <ArrowRight className="ml-1 h-4 w-4" />
               </a>
             </div>
@@ -437,7 +437,7 @@ export default function HanaRCPSLandingPage() {
             <h2 className="text-3xl font-bold tracking-tight md:text-5xl">앱 개발부터 AI 분석까지</h2>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <a href="https://bookquest.co" target="_blank" rel="noreferrer">
+            <a href="https://bookquest.co.kr" target="_blank" rel="noreferrer">
               <Button className="w-full rounded-2xl bg-violet-600 px-5 py-5 text-white hover:bg-violet-700 sm:w-auto">BookQuest 보기</Button>
             </a>
             <a href="https://icoach.ai.kr" target="_blank" rel="noreferrer">
@@ -494,7 +494,7 @@ export default function HanaRCPSLandingPage() {
               <a href="mailto:yunagunwoo@gmail.com" className="hover:text-cyan-200">yunagunwoo@gmail.com</a>
             </div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a href="https://bookquest.co" target="_blank" rel="noreferrer" className="rounded-2xl bg-white px-5 py-3 text-center text-sm font-bold text-slate-950 hover:bg-cyan-50">BookQuest 방문</a>
+              <a href="https://bookquest.co.kr" target="_blank" rel="noreferrer" className="rounded-2xl bg-white px-5 py-3 text-center text-sm font-bold text-slate-950 hover:bg-cyan-50">BookQuest 방문</a>
               <a href="https://icoach.ai.kr" target="_blank" rel="noreferrer" className="rounded-2xl border border-white/20 px-5 py-3 text-center text-sm font-bold text-white hover:bg-white/10">iCoach 방문</a>
             </div>
           </div>
