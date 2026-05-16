@@ -13,12 +13,21 @@ const ICOACH_SCREEN_2 = "/images/icoach_analysis.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 36 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7 },
+  },
 };
 
 const fadeScale = {
   hidden: { opacity: 0, scale: 0.94, y: 24 },
-  visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] } },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { duration: 0.75 },
+  },
 };
 
 const stagger = {
