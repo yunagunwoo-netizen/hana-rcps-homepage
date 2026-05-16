@@ -1,5 +1,3 @@
-// @ts-nocheck
-"use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, BrainCircuit, BookOpen, Dumbbell, Mail, MapPin, Menu, Moon, Sparkles, Sun, X } from "lucide-react";
@@ -14,21 +12,12 @@ const ICOACH_SCREEN_2 = "/images/icoach_analysis.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 36 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7 },
-  },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
 };
 
 const fadeScale = {
   hidden: { opacity: 0, scale: 0.94, y: 24 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { duration: 0.75 },
-  },
+  visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.75, ease: "easeOut" } },
 };
 
 const stagger = {
@@ -123,18 +112,20 @@ export default function HanaRCPSLandingPage() {
           </div>
         )}
 
-        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-6 pb-28 pt-16 md:grid-cols-2 md:pt-24">
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-14 px-6 pb-24 pt-14 md:grid-cols-[1.05fr_0.95fr] md:pb-28 md:pt-20 lg:gap-16">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-cyan-50 backdrop-blur">
               <Sparkles className="h-4 w-4" />
               Human-Centered AI Applications
             </div>
-            <h1 className="text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">
+            <h1 className="max-w-3xl text-5xl font-extrabold leading-[1.12] tracking-tight md:text-6xl lg:text-7xl">
               AI로 더 나은
               <br />
-              <span className="bg-gradient-to-r from-cyan-200 to-emerald-200 bg-clip-text text-transparent">학습과 성장</span>을 설계합니다
+              <span className="bg-gradient-to-r from-cyan-200 to-emerald-200 bg-clip-text text-transparent">학습과 성장</span>을
+              <br />
+              설계합니다
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-200">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200 md:text-xl md:leading-9">
               하나RCPS는 AI 기술을 바탕으로 독서, 교육, 스포츠 코칭 분야의 새로운 앱 경험을 만드는 AI 앱 개발회사입니다.
             </p>
             <motion.div
@@ -168,13 +159,13 @@ export default function HanaRCPSLandingPage() {
             <div className="absolute -left-10 top-10 hidden h-40 w-40 rounded-full bg-cyan-400/20 blur-3xl md:block" />
             <div className="absolute -bottom-8 right-0 hidden h-48 w-48 rounded-full bg-emerald-400/20 blur-3xl md:block" />
 
-            <div className="relative flex items-center gap-6">
+            <div className="relative flex w-full items-center justify-center gap-5 lg:gap-6">
               <motion.div
                 animate={{ y: [0, -12, 0] }}
                 transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
                 className="hidden md:block"
               >
-                <div className="w-[220px] overflow-hidden rounded-[2.5rem] border border-violet-200/20 bg-white/10 p-3 shadow-2xl backdrop-blur-xl">
+                <div className="w-[200px] overflow-hidden rounded-[2.5rem] border border-violet-200/20 bg-white/10 p-3 shadow-2xl backdrop-blur-xl xl:w-[220px]">
                   <img
                     src={BOOKQUEST_SCREEN_1}
                     alt="BookQuest App"
@@ -193,7 +184,7 @@ export default function HanaRCPSLandingPage() {
                   <img
                     src={ICOACH_SCREEN_1}
                     alt="iCoach App"
-                    className="relative h-[520px] w-auto rounded-[2.2rem] border border-white/5 object-contain shadow-2xl"
+                    className="relative h-[460px] w-auto rounded-[2.2rem] border border-white/5 object-contain shadow-2xl xl:h-[520px]"
                   />
                 </div>
               </motion.div>
@@ -203,7 +194,7 @@ export default function HanaRCPSLandingPage() {
                 transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}
                 className="hidden lg:block"
               >
-                <div className="w-[220px] overflow-hidden rounded-[2.5rem] border border-cyan-200/20 bg-white/10 p-3 shadow-2xl backdrop-blur-xl">
+                <div className="w-[200px] overflow-hidden rounded-[2.5rem] border border-cyan-200/20 bg-white/10 p-3 shadow-2xl backdrop-blur-xl xl:w-[220px]">
                   <img
                     src={ICOACH_SCREEN_2}
                     alt="iCoach Analysis"
@@ -361,9 +352,9 @@ export default function HanaRCPSLandingPage() {
         viewport={{ once: true, amount: 0.2 }}
       >
         <div className="mx-auto max-w-7xl px-6">
-          <div className="mb-12 max-w-3xl">
+          <div className="mb-12 max-w-7xl">
             <p className="mb-3 font-semibold text-emerald-600">WHY HANA RCPS</p>
-            <h2 className="whitespace-nowrap text-3xl font-bold tracking-tight md:text-5xl">AI, 교육, 스포츠를 하나의 성장 경험으로 연결합니다</h2>
+            <h2 className="text-3xl font-bold tracking-tight md:text-5xl lg:whitespace-nowrap">AI, 교육, 스포츠를 하나의 성장 경험으로 연결합니다</h2>
           </div>
           <div className="grid gap-6 md:grid-cols-4">
             {[
@@ -403,7 +394,7 @@ export default function HanaRCPSLandingPage() {
               <div className="mt-4 rounded-2xl bg-violet-600 p-5 text-sm leading-7 text-white shadow-lg">
                 어린왕자는 상상력, 관계, 책임이라는 주제를 쉽게 이해할 수 있게 도와줍니다. BookQuest는 아이의 관심사에 맞춰 질문과 독후 활동을 추천합니다.
               </div>
-              <a href="https://bookquest.co.kr" target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center text-sm font-bold text-violet-700">
+              <a href="https://bookquest.co" target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center text-sm font-bold text-violet-700">
                 BookQuest 바로가기 <ArrowRight className="ml-1 h-4 w-4" />
               </a>
             </div>
@@ -437,7 +428,7 @@ export default function HanaRCPSLandingPage() {
             <h2 className="text-3xl font-bold tracking-tight md:text-5xl">앱 개발부터 AI 분석까지</h2>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <a href="https://bookquest.co.kr" target="_blank" rel="noreferrer">
+            <a href="https://bookquest.co" target="_blank" rel="noreferrer">
               <Button className="w-full rounded-2xl bg-violet-600 px-5 py-5 text-white hover:bg-violet-700 sm:w-auto">BookQuest 보기</Button>
             </a>
             <a href="https://icoach.ai.kr" target="_blank" rel="noreferrer">
@@ -494,7 +485,7 @@ export default function HanaRCPSLandingPage() {
               <a href="mailto:yunagunwoo@gmail.com" className="hover:text-cyan-200">yunagunwoo@gmail.com</a>
             </div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a href="https://bookquest.co.kr" target="_blank" rel="noreferrer" className="rounded-2xl bg-white px-5 py-3 text-center text-sm font-bold text-slate-950 hover:bg-cyan-50">BookQuest 방문</a>
+              <a href="https://bookquest.co" target="_blank" rel="noreferrer" className="rounded-2xl bg-white px-5 py-3 text-center text-sm font-bold text-slate-950 hover:bg-cyan-50">BookQuest 방문</a>
               <a href="https://icoach.ai.kr" target="_blank" rel="noreferrer" className="rounded-2xl border border-white/20 px-5 py-3 text-center text-sm font-bold text-white hover:bg-white/10">iCoach 방문</a>
             </div>
           </div>
