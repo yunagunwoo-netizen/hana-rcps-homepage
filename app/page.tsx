@@ -363,7 +363,7 @@ export default function HanaRCPSLandingPage() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-12 max-w-3xl">
             <p className="mb-3 font-semibold text-emerald-600">WHY HANA RCPS</p>
-            <h2 className="text-3xl font-bold tracking-tight md:text-5xl">AI, 교육, 스포츠를 하나의 성장 경험으로 연결합니다</h2>
+            <h2 className="whitespace-nowrap text-3xl font-bold tracking-tight md:text-5xl">AI, 교육, 스포츠를 하나의 성장 경험으로 연결합니다</h2>
           </div>
           <div className="grid gap-6 md:grid-cols-4">
             {[
