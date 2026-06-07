@@ -24,3 +24,38 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* 한글 줄바꿈: 단어(어절) 단위로 끊어 "요"가 홀로 떨어지거나 글자 중간이 깨지지 않도록 */
+:lang(ko),
+h1, h2, h3, p, a, span, li, button {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 히어로 폰 캐러셀: 4개 스크린샷이 좌→중앙→우로 자리를 돌아가며 가운데서 크게 */
+@keyframes heroOrbit {
+  0%    { transform: translate(-50%, -50%) translateX(0)      scale(1);    z-index: 30; opacity: 1; }
+  12.5% { transform: translate(-50%, -50%) translateX(130px)  scale(0.95); z-index: 26; opacity: 0.95; }
+  25%   { transform: translate(-50%, -50%) translateX(185px)  scale(0.86); z-index: 20; opacity: 0.85; }
+  37.5% { transform: translate(-50%, -50%) translateX(130px)  scale(0.8);  z-index: 14; opacity: 0.78; }
+  50%   { transform: translate(-50%, -50%) translateX(0)      scale(0.76); z-index: 8;  opacity: 0.72; }
+  62.5% { transform: translate(-50%, -50%) translateX(-130px) scale(0.8);  z-index: 14; opacity: 0.78; }
+  75%   { transform: translate(-50%, -50%) translateX(-185px) scale(0.86); z-index: 20; opacity: 0.85; }
+  87.5% { transform: translate(-50%, -50%) translateX(-130px) scale(0.95); z-index: 26; opacity: 0.95; }
+  100%  { transform: translate(-50%, -50%) translateX(0)      scale(1);    z-index: 30; opacity: 1; }
+}
+
+.hero-phone {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  animation: heroOrbit 18s linear infinite;
+  will-change: transform, opacity;
+}
+.hero-phone.p2 { animation-delay: -4.5s; }
+.hero-phone.p3 { animation-delay: -9s; }
+.hero-phone.p4 { animation-delay: -13.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-phone { animation-play-state: paused; }
+}
