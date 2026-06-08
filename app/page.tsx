@@ -468,11 +468,11 @@ function DemoCard({ title, label, image, video, question, answer, href, button, 
       {(video || image) && (
         <div className={isAmber ? "mb-6 overflow-hidden rounded-2xl border border-white/10 bg-white/5" : "mb-6 overflow-hidden rounded-2xl border border-violet-100 bg-white"}>
           {video ? (
-            <video className="h-44 w-full object-cover" autoPlay muted loop playsInline preload="metadata" poster={image}>
+            <video className="aspect-[4/3] w-full object-cover" autoPlay muted loop playsInline preload="metadata" poster={image}>
               <source src={video} type="video/mp4" />
             </video>
           ) : (
-            <img src={image} alt="" className="h-44 w-full object-cover" />
+            <img src={image} alt="" className="aspect-[4/3] w-full object-cover" />
           )}
         </div>
       )}
