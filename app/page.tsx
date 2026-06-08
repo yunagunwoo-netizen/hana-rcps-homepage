@@ -268,14 +268,6 @@ export default function Home() {
               accent="amber"
             />
           </motion.div>
-
-          <p className="mb-6 text-sm font-semibold uppercase tracking-wide text-slate-400">App Preview</p>
-          <motion.div className="mb-14 grid gap-6 md:grid-cols-2" variants={stagger}>
-            <AppCard title="BookQuest" subtitle="AI 독서 성장 플랫폼" image={BOOKQUEST_SCREEN_1} color="violet" />
-            <AppCard title="BookQuest Mission" subtitle="퀘스트 기반 독서 성장 경험" image={BOOKQUEST_SCREEN_2} color="cyan" />
-            <AppCard title="iCoach" subtitle="AI 야구 자세 분석 플랫폼" image={ICOACH_SCREEN_1} color="amber" dark />
-            <AppCard title="iCoach Analysis" subtitle="실시간 자세 피드백 시스템" image={ICOACH_SCREEN_2} color="yellow" dark />
-          </motion.div>
         </div>
       </motion.section>
 
