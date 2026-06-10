@@ -1,6 +1,6 @@
 # AI&DDP / 하나RCPS 프로젝트 핸드오프
 
-> 마지막 업데이트: 2026-06-10 (Cowork 세션 3: 하나RCPS에 세션2 변경 전체 반영 — **커밋/푸시 대기**). 새 세션에서 이 파일을 먼저 읽고 이어서 작업.
+> 마지막 업데이트: 2026-06-10 (Cowork 세션 3: ① 하나RCPS 세션2 반영(푸시 완료 `df169f0`) ② 출시예정 라인업 3종 — 아이언암·에이코치·핑 3칸 그리드, **양사이트, 커밋/푸시 대기**). 새 세션에서 이 파일을 먼저 읽고 이어서 작업.
 
 ## 1. 개요
 회사 홈페이지 2개를 운영. **동일 Next.js 코드베이스**를 복제해 브랜딩만 다르게 함.
@@ -33,7 +33,7 @@ AI&DDP는 하나RCPS를 복제해 회사명/로고/도메인/연락처만 리브
 - AI&DDP 로고 `aiddp_logo.png` (엠블럼: 머리+뇌회로+달리는 사람+책, 파랑→청록→초록 그라데이션). 하나RCPS는 `hana_rcps_logo.png`.
 - AI&DDP Contact: **김청현 이사 / 010-7744-8186 / ggyeong567@gmail.com**, 주소 **서울 종로구 삼일대로 461 운현궁 SK허브 B-114**, 웹 www.ddp.ai.kr
 - 하나RCPS Contact: 경기 수원 광교, yunagunwoo@gmail.com
-- 제품 2종: **BookQuest**(AI 독서 성장, bookquest.co.kr) · **iCoach**(AI 야구 자세분석, icoach.ai.kr) + **Iron Arm**(AI 투구분석, 출시예정 티저)
+- 제품 2종: **BookQuest**(AI 독서 성장, bookquest.co.kr) · **iCoach**(AI 야구 자세분석, icoach.ai.kr) + 출시예정 티저 3종: **Iron Arm**(AI 투구분석) · **에이코치**(AI 건강 코치, 'VitalMirror'로 개발중 — 별도 세션 '에이코치') · **핑 Ping**(가족 생존신고 앱, 1일 1사진 — 별도 세션 '핑' 기획서)
 - 슬로건: "AI App Development Company" / "AI로 더 나은 학습과 성장을 설계합니다"
 
 ## 5. 에셋 (영상은 Higgsfield seedance_2_0, 이미지는 nano_banana_pro)
@@ -85,7 +85,12 @@ AI&DDP는 하나RCPS를 복제해 회사명/로고/도메인/연락처만 리브
 - `layout.tsx`: 기본값("Create Next App", lang=en) → 하나RCPS 타이틀/설명 + openGraph/twitter + `metadataBase: https://hanarcps.com`, lang=ko. ⚠️ canonical이 www인지 apex인지 Vercel Domains에서 확인 — www가 primary면 metadataBase를 www로 수정.
 - 하나RCPS용 `og_image.png`(1200×630) 신규: 이미지 생성 MCP 없이 PIL로 배경(네이비→에메랄드 그라데이션 + 입자 네트워크 + 시안 글로우) 직접 생성 + `app/icon.png` 엠블럼 흰카드 + Pretendard 텍스트 합성. **크레딧 사용 0**.
 - 검증: 치환 횟수 assert 전건 일치, UTF-8 재독, esbuild 구문 OK, 파일 끝 온전(618줄).
-- 푸시(사용자): `cd C:\Users\ggyeo\hana-rcps-homepage` → `git add . ; git commit -m "Port session2: remove demo, mobile hero, WHY/Tech images, About video, Iron Arm teaser, OG" ; git push origin main`. (레포에 untracked `preview.html` 있음 — 커밋 원치 않으면 먼저 삭제.)
+- 푸시 완료: 하나RCPS `df169f0` (preview.html 포함 커밋됨).
+
+**세션3 후반 — 출시예정 라인업 3종 (양사이트, 커밋/푸시 대기):**
+- Products의 아이언암 풀폭 카드 → **아이언암·에이코치·핑 3칸 그리드**(`md:grid-cols-3`, 상단 이미지 h-52 + COMING SOON 뱃지 + 텍스트, hover lift) 교체. 신규 상수 `PRODUCT_AICOACH` `PRODUCT_PING`. 두 레포 동일 적용, esbuild 검증 OK.
+- 신규 이미지(nano_banana_pro 16:9, 장당 2크레딧, 양쪽 `public/images/` 동일 사본): `product_aicoach.png`(거실에서 시안 홀로그램 건강 대시보드 보는 남성) · `product_ping.png`(공원 노을 가족 4인 셀피 + 오렌지 연결선).
+- 카드 문구 — 에이코치: "건강검진 결과를 입력하면 AI가 정상·주의·위험을 한눈에 진단하고, 연도별 변화 추적과 맞춤 건강 코칭을 제공합니다." / 핑: "하루 한 장의 사진으로 가족의 안부를 전하는 생존신고 앱. 코멘트와 리액션, 스트릭으로 가족의 타임라인이 쌓입니다."
 
 ## 8. 명함 (AI&DDP) — `C:\Users\ggyeo\AIDDP\namecard\`
 - 김청현 이사 양면 명함, **인쇄용 PDF 90×50mm + 도련 3mm**, Pretendard 폰트, 로고 엠블럼(배경제거).
@@ -97,7 +102,7 @@ AI&DDP는 하나RCPS를 복제해 회사명/로고/도메인/연락처만 리브
 - 추가 옵션 가능: 직함/이름 영문 병기, 재단선 보강, 색 톤 조정, QR코드.
 
 ## 9. 아이언암(Iron Arm)
-- **AI&DDP Products에 "출시 예정" 티저 카드 추가됨**(세션2) — `public/images/product_ironarm.png`.
+- **양사이트 Products에 출시예정 3칸 그리드(아이언암·에이코치·핑)**(세션3) — `product_ironarm.png` `product_aicoach.png` `product_ping.png`.
 - 성인 투구 영상(AI 스켈레톤 오버레이): `C:\Users\ggyeo\AIDDP\ironarm_assets\ironarm_pitching_adult.mp4` (+ `ironarm_pitching_preview.png`).
 - **독립 아이언암 사이트는 아직 미생성**. 만들 때 위 영상 활용.
 
@@ -105,7 +110,7 @@ AI&DDP는 하나RCPS를 복제해 회사명/로고/도메인/연락처만 리브
 - 🚨 **소스 파일 truncation 주의**: 이 마운트에서 `app/page.tsx`·`app/layout.tsx`를 Edit/Write 도구로 저장하면 **파일 끝이 잘리는 현상**이 반복됨(세션2에서 3회 발생). → **source 파일은 샌드박스 python 원자적 쓰기로 저장**: `open(tmp,'w',encoding='utf-8').write(text); os.replace(tmp,path)`. 저장 후 **반드시** ① `python3 -c "open(f,encoding='utf-8').read()"`(UTF-8 검증) ② `npx esbuild app/page.tsx --loader:.tsx=tsx --bundle=false`(구문 검증). 잘렸으면 `git show HEAD:app/page.tsx`에서 뒷부분 잘라 이어붙여 복구.
 - **영상 생성(Higgsfield MCP)**: `seedance_2_0`, 9:16·16:9 지원, `get_cost:true`로 비용 선확인. 세로 8초≈36, 가로 5초≈22.5 크레딧. 생성→`job_display` 폴링→완료 시 `rawUrl`(cloudfront) 다운로드.
 - **이미지 생성**: `nano_banana_pro`(=내부 nano_banana_2), 1:1·16:9 등, 1k 기본, 1장 2크레딧. WHY/Technology 카드 스타일 프롬프트 프리앰블: "3D isometric illustration, clean modern flat-3D render, soft studio lighting, brand palette blue→cyan→green, pure white background, no text".
-- **크레딧 잔여**: 약 **~2032** (세션2 34.5 사용, 세션3 사용 0).
+- **크레딧 잔여**: 약 **~2020** (세션2 34.5, 세션3 이미지 2장 = 4 사용).
 - **에셋 다운로드**: cloudfront URL → workspace bash `curl` → `public/images|videos/`.
 - **OG 이미지 합성**: 배경 생성 → `app/icon.png`(투명 엠블럼) + 텍스트(Pretendard) PIL 합성 → `public/images/og_image.png`(1200×630). 카카오톡 OG 캐시는 developers.kakao.com에서 URL 갱신.
 - **Pretendard 폰트**: 샌드박스 `npm install pretendard` → `node_modules/pretendard/dist/public/static/alternative/*.ttf`. 시스템엔 한글 폰트 없음.

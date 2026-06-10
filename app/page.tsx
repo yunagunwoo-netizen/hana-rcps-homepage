@@ -45,8 +45,10 @@ const TECH_FRONTEND = "/images/tech_frontend.png";
 const TECH_BACKEND = "/images/tech_backend.png";
 const TECH_OPS = "/images/tech_ops.png";
 
-// 아이언암(Iron Arm) 제품 티저
+// 출시 예정 제품 티저 (아이언암 · 에이코치 · 핑)
 const PRODUCT_IRONARM = "/images/product_ironarm.png";
+const PRODUCT_AICOACH = "/images/product_aicoach.png";
+const PRODUCT_PING = "/images/product_ping.png";
 
 // Higgsfield 생성 영상 (이미지를 영상화한 루프)
 const HERO_VIDEO = "/videos/main_loop.mp4";
@@ -330,25 +332,30 @@ export default function Home() {
             />
           </motion.div>
 
-          <motion.div
-            variants={fadeUp}
-            className="overflow-hidden rounded-[2rem] border border-slate-100 bg-slate-950 shadow-md"
-          >
-            <div className="grid items-center md:grid-cols-2">
-              <div className="relative h-56 overflow-hidden md:h-full md:min-h-[320px]">
-                <img src={PRODUCT_IRONARM} alt="Iron Arm" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 to-transparent md:bg-gradient-to-l" />
-              </div>
-              <div className="p-8 text-white md:p-12">
-                <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-400/10 px-3 py-1 text-xs font-semibold tracking-wide text-cyan-200">
-                  COMING SOON · 출시 예정
-                </span>
-                <h3 className="mt-4 text-2xl font-bold md:text-3xl">Iron Arm · AI 투구 분석</h3>
-                <p className="mt-3 leading-7 text-slate-300">
-                  성인·선수용 투구 영상을 AI가 분석해 어깨·팔 동작과 밸런스를 정밀 진단하고, 부상 위험과 개선 포인트를 리포트로 제공합니다.
-                </p>
-              </div>
-            </div>
+          <motion.div className="grid gap-6 md:grid-cols-3" variants={stagger}>
+            {[
+              [PRODUCT_IRONARM, "Iron Arm · AI 투구 분석", "성인·선수용 투구 영상을 AI가 분석해 어깨·팔 동작과 밸런스를 정밀 진단하고, 부상 위험과 개선 포인트를 리포트로 제공합니다."],
+              [PRODUCT_AICOACH, "에이코치 · AI 건강 코치", "건강검진 결과를 입력하면 AI가 정상·주의·위험을 한눈에 진단하고, 연도별 변화 추적과 맞춤 건강 코칭을 제공합니다."],
+              [PRODUCT_PING, "핑(Ping) · 가족 안부 앱", "하루 한 장의 사진으로 가족의 안부를 전하는 생존신고 앱. 코멘트와 리액션, 스트릭으로 가족의 타임라인이 쌓입니다."],
+            ].map(([img, title, desc]) => (
+              <motion.div
+                key={title}
+                variants={fadeUp}
+                className="group overflow-hidden rounded-[2rem] border border-slate-100 bg-slate-950 shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
+              >
+                <div className="relative h-52 overflow-hidden">
+                  <img src={img} alt={title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 to-transparent" />
+                </div>
+                <div className="p-7 text-white">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-400/10 px-3 py-1 text-xs font-semibold tracking-wide text-cyan-200">
+                    COMING SOON · 출시 예정
+                  </span>
+                  <h3 className="mt-4 text-xl font-bold md:text-2xl">{title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-300">{desc}</p>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
 
         </div>
