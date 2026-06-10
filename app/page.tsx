@@ -32,8 +32,26 @@ const PRODUCT_ICOACH = "/images/product_icoach.jpg";
 const DEMO_BOOKQUEST = "/images/demo_bookquest.jpg";
 const DEMO_ICOACH = "/images/demo_icoach.jpg";
 
+// WHY 섹션 카드 아이콘 (3D 아이소메트릭, nano_banana_pro)
+const WHY_EDUCATION = "/images/why_education.png";
+const WHY_SPORTS = "/images/why_sports.png";
+const WHY_GAMIFICATION = "/images/why_gamification.png";
+const WHY_UX = "/images/why_ux.png";
+
+// Technology 섹션 프로세스 아이콘 (3D 아이소메트릭)
+const TECH_UIUX = "/images/tech_uiux.png";
+const TECH_AI = "/images/tech_ai.png";
+const TECH_FRONTEND = "/images/tech_frontend.png";
+const TECH_BACKEND = "/images/tech_backend.png";
+const TECH_OPS = "/images/tech_ops.png";
+
+// 아이언암(Iron Arm) 제품 티저
+const PRODUCT_IRONARM = "/images/product_ironarm.png";
+
 // Higgsfield 생성 영상 (이미지를 영상화한 루프)
-const HERO_VIDEO = "/videos/hero_bg.mp4";
+const HERO_VIDEO = "/videos/main_loop.mp4";
+const HERO_VIDEO_PORTRAIT = "/videos/main_loop_portrait.mp4";
+const ABOUT_VIDEO = "/videos/about_loop.mp4";
 const PRODUCT_BOOKQUEST_VIDEO = "/videos/product_bookquest.mp4";
 const PRODUCT_ICOACH_VIDEO = "/videos/product_icoach.mp4";
 const DEMO_BOOKQUEST_VIDEO = "/videos/demo_bookquest.mp4";
@@ -65,16 +83,16 @@ export default function Home() {
     { label: "About", href: "#about" },
     { label: "Products", href: "#products" },
     { label: "Why", href: "#why" },
-    { label: "Demo", href: "#demo" },
     { label: "Technology", href: "#technology" },
     { label: "Contact", href: "#contact" },
   ];
 
   return (
     <main className={isDarkMode ? "min-h-screen bg-slate-950 text-white" : "min-h-screen bg-slate-50 text-slate-900"}>
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-emerald-900 text-white">
+      <section className="relative flex min-h-[100svh] flex-col overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-emerald-900 text-white md:block md:min-h-0">
+        {/* 배경 영상: 데스크톱=가로(main_loop), 모바일=세로(portrait). 둘 다 화면을 채우며 위로 텍스트 오버레이 */}
         <video
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 hidden h-full w-full object-cover md:block"
           autoPlay
           muted
           loop
@@ -83,6 +101,17 @@ export default function Home() {
           poster={BG_WHY}
         >
           <source src={HERO_VIDEO} type="video/mp4" />
+        </video>
+        <video
+          className="absolute inset-0 h-full w-full object-cover md:hidden"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={BG_WHY}
+        >
+          <source src={HERO_VIDEO_PORTRAIT} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/92 via-slate-950/70 to-blue-950/45" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
@@ -150,14 +179,14 @@ export default function Home() {
           </div>
         )}
 
-        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-14 px-6 pb-24 pt-14 md:grid-cols-[1.05fr_0.95fr] md:pb-28 md:pt-20 lg:gap-16">
+        <div className="relative z-10 mx-auto my-auto grid w-full max-w-7xl items-center gap-14 px-6 pb-16 pt-10 md:my-0 md:grid-cols-[1.05fr_0.95fr] md:pb-28 md:pt-20 lg:gap-16">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-cyan-50 backdrop-blur">
               <Sparkles className="h-4 w-4" />
               Human-Centered AI Applications
             </div>
 
-            <h1 className="max-w-4xl text-5xl font-extrabold leading-[1.12] tracking-tight md:text-6xl lg:text-7xl">
+            <h1 className="max-w-[270px] text-5xl font-extrabold leading-[1.12] tracking-tight sm:max-w-none md:text-6xl lg:text-7xl">
               AI로 더 나은
               <br />
               학습과 성장을
@@ -165,18 +194,18 @@ export default function Home() {
               설계합니다
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200 md:text-xl md:leading-9">
+            <p className="mt-6 max-w-[250px] text-lg leading-8 text-slate-200 sm:max-w-2xl md:text-xl md:leading-9">
               하나RCPS는 AI 기술을 기반으로 교육, 독서, 스포츠 분야의 새로운 사용자 경험을 만드는 AI 앱 개발 회사입니다.
             </p>
 
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <a href="#products">
-                <Button className="w-full rounded-2xl bg-white px-6 py-6 text-slate-950 hover:bg-cyan-50 sm:w-auto">
-                  서비스 살펴보기 <ArrowRight className="ml-2 h-4 w-4" />
+            <div className="mt-8 flex flex-row gap-3 md:mt-9">
+              <a href="#products" className="flex-1 sm:flex-none">
+                <Button className="w-full whitespace-nowrap rounded-2xl bg-white px-3 py-5 text-sm text-slate-950 hover:bg-cyan-50 sm:w-auto sm:px-6 sm:py-6 sm:text-base">
+                  서비스 살펴보기 <ArrowRight className="ml-1.5 hidden h-4 w-4 sm:ml-2 sm:inline-block" />
                 </Button>
               </a>
-              <a href="#contact">
-                <Button className="w-full rounded-2xl border border-white/30 bg-white/10 px-6 py-6 text-white hover:bg-white/20 sm:w-auto">
+              <a href="#contact" className="flex-1 sm:flex-none">
+                <Button className="w-full whitespace-nowrap rounded-2xl border border-white/30 bg-white/10 px-3 py-5 text-sm text-white hover:bg-white/20 sm:w-auto sm:px-6 sm:py-6 sm:text-base">
                   프로젝트 문의하기
                 </Button>
               </a>
@@ -195,7 +224,7 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.92, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="relative flex justify-center"
+            className="relative hidden justify-center md:flex"
           >
             <div className="relative mx-auto h-[520px] w-full max-w-[520px]">
               <motion.div
@@ -227,9 +256,41 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
+
+        {/* 모바일 전용: 폰 캐러셀을 작게 줄여 영상 오른쪽 아래에 회전 오버레이 (스크롤 추가 없음) */}
+        <div className="pointer-events-none absolute right-0 top-[40%] z-20 h-[520px] w-[520px] origin-top-right scale-[0.26] md:hidden">
+          <div className="relative h-full w-full">
+            <motion.div
+              aria-hidden
+              animate={{ opacity: [0.25, 0.5, 0.25], scale: [1, 1.1, 1] }}
+              transition={{ repeat: Infinity, duration: 6.5, ease: "easeInOut" }}
+              className="pointer-events-none absolute left-1/2 top-1/2 h-[360px] w-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/25 blur-3xl"
+            />
+            <div className="hero-phone p1">
+              <div className="w-[210px] overflow-hidden rounded-[2.5rem] border border-violet-200/20 bg-white/10 p-3 shadow-2xl backdrop-blur-xl">
+                <img src={BOOKQUEST_SCREEN_1} alt="BookQuest App" className="h-[430px] w-full rounded-[2rem] object-cover" />
+              </div>
+            </div>
+            <div className="hero-phone p2">
+              <div className="w-[210px] overflow-hidden rounded-[2.5rem] border border-amber-300/20 bg-black/30 p-3 shadow-2xl backdrop-blur-xl">
+                <img src={ICOACH_SCREEN_1} alt="iCoach App" className="h-[430px] w-full rounded-[2rem] object-cover" />
+              </div>
+            </div>
+            <div className="hero-phone p3">
+              <div className="w-[210px] overflow-hidden rounded-[2.5rem] border border-violet-200/20 bg-white/10 p-3 shadow-2xl backdrop-blur-xl">
+                <img src={BOOKQUEST_SCREEN_2} alt="BookQuest Mission" className="h-[430px] w-full rounded-[2rem] object-cover" />
+              </div>
+            </div>
+            <div className="hero-phone p4">
+              <div className="w-[210px] overflow-hidden rounded-[2.5rem] border border-cyan-200/20 bg-white/10 p-3 shadow-2xl backdrop-blur-xl">
+                <img src={ICOACH_SCREEN_2} alt="iCoach Analysis" className="h-[430px] w-full rounded-[2rem] object-cover" />
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <Section id="about" label="ABOUT HANA RCPS" title={<>기술보다 중요한 것은<br />사람의 변화입니다</>} bgImage={BG_ABOUT}>
+      <Section id="about" label="ABOUT HANA RCPS" title={<>기술보다 중요한 것은<br />사람의 변화입니다</>} bgImage={BG_ABOUT} bgVideo={ABOUT_VIDEO}>
         하나RCPS는 단순한 기능 개발이 아니라, 사용자의 행동과 성장을 만들어내는 AI 서비스를 설계합니다.
         <br />
         우리는 AI를 통해 배움이 더 즐거워지고, 훈련이 더 효과적이며, 성장이 더 지속될 수 있다고 믿습니다.
@@ -268,6 +329,28 @@ export default function Home() {
               accent="amber"
             />
           </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            className="overflow-hidden rounded-[2rem] border border-slate-100 bg-slate-950 shadow-md"
+          >
+            <div className="grid items-center md:grid-cols-2">
+              <div className="relative h-56 overflow-hidden md:h-full md:min-h-[320px]">
+                <img src={PRODUCT_IRONARM} alt="Iron Arm" className="h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 to-transparent md:bg-gradient-to-l" />
+              </div>
+              <div className="p-8 text-white md:p-12">
+                <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-400/10 px-3 py-1 text-xs font-semibold tracking-wide text-cyan-200">
+                  COMING SOON · 출시 예정
+                </span>
+                <h3 className="mt-4 text-2xl font-bold md:text-3xl">Iron Arm · AI 투구 분석</h3>
+                <p className="mt-3 leading-7 text-slate-300">
+                  성인·선수용 투구 영상을 AI가 분석해 어깨·팔 동작과 밸런스를 정밀 진단하고, 부상 위험과 개선 포인트를 리포트로 제공합니다.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
         </div>
       </motion.section>
 
@@ -291,57 +374,82 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-4">
             {[
-              ["AI + Education", "독서와 학습 데이터를 기반으로 개인 맞춤형 성장 경험을 제공합니다."],
-              ["AI + Sports", "동작 분석과 AI 피드백을 통해 훈련 효율과 성장 속도를 높입니다."],
-              ["Gamification", "레벨, 미션, 보상 구조를 통해 지속 가능한 몰입 경험을 만듭니다."],
-              ["Human-Centered UX", "기술 중심이 아닌 사용자 중심의 경험 설계를 추구합니다."],
-            ].map(([title, desc]) => (
-              <motion.div key={title} variants={fadeUp} className="rounded-3xl bg-white p-7 text-slate-900 shadow-sm">
-                <h3 className="mb-3 text-xl font-bold">{title}</h3>
-                <p className="leading-7 text-slate-600">{desc}</p>
+              ["AI + Education", "독서와 학습 데이터를 기반으로 개인 맞춤형 성장 경험을 제공합니다.", WHY_EDUCATION],
+              ["AI + Sports", "동작 분석과 AI 피드백을 통해 훈련 효율과 성장 속도를 높입니다.", WHY_SPORTS],
+              ["Gamification", "레벨, 미션, 보상 구조를 통해 지속 가능한 몰입 경험을 만듭니다.", WHY_GAMIFICATION],
+              ["Human-Centered UX", "기술 중심이 아닌 사용자 중심의 경험 설계를 추구합니다.", WHY_UX],
+            ].map(([title, desc, img]) => (
+              <motion.div
+                key={title}
+                variants={fadeUp}
+                className="group flex flex-col overflow-hidden rounded-3xl border border-slate-100 bg-white text-slate-900 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
+              >
+                <div className="flex items-center justify-center bg-gradient-to-br from-blue-50 via-cyan-50 to-emerald-50 p-6">
+                  <img
+                    src={img}
+                    alt={title}
+                    className="h-28 w-28 object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-110"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="mb-2 text-lg font-bold">{title}</h3>
+                  <p className="text-sm leading-7 text-slate-600">{desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </motion.section>
 
-      <motion.section id="demo" className="bg-white py-24" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
-        <div className="mx-auto max-w-7xl px-6">
-          <p className="mb-3 font-semibold text-blue-600">AI DEMO EXPERIENCE</p>
-          <h2 className="mb-12 text-3xl font-bold tracking-tight md:text-5xl">사용자가 바로 이해할 수 있는 AI 데모</h2>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            <DemoCard
-              title="AI에게 책을 질문하기"
-              label="BookQuest Demo"
-              image={DEMO_BOOKQUEST}
-              video={DEMO_BOOKQUEST_VIDEO}
-              question="왜 어린왕자는 초등학생에게 좋은 책인가요?"
-              answer="어린왕자는 상상력, 관계, 책임이라는 주제를 쉽게 이해할 수 있게 도와줍니다. BookQuest는 아이의 관심사에 맞춰 질문과 독후 활동을 추천합니다."
-              href={BOOKQUEST_URL}
-              button="BookQuest 바로가기"
-              theme="violet"
-            />
-            <DemoCard
-              title="AI 자세 분석 리포트"
-              label="iCoach Demo"
-              image={DEMO_ICOACH}
-              video={DEMO_ICOACH_VIDEO}
-              question="스윙 영상 업로드 → AI 분석 중"
-              answer="균형 점수 86점 · 임팩트 구간 안정적. 개선 제안: 팔로스루 각도를 조금 더 크게 유지하세요."
-              href={ICOACH_URL}
-              button="iCoach 바로가기"
-              theme="amber"
-            />
+      <motion.section
+        id="technology"
+        className="relative overflow-hidden"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        <img src={BG_TECH} alt="" aria-hidden className="pointer-events-none absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/92 via-slate-50/88 to-white/92" />
+        <div className="relative mx-auto max-w-7xl px-6 py-28">
+          <div className="max-w-4xl">
+            <p className="mb-3 font-semibold text-emerald-600">TECHNOLOGY</p>
+            <h2 className="text-3xl font-bold leading-tight tracking-tight md:text-5xl">
+              기획부터 AI 서비스 운영까지
+              <br />
+              전체 개발 과정을 함께합니다
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-slate-700">
+              UI/UX 디자인, AI 기능 설계, 프론트엔드 개발, 백엔드 구축, 서비스 운영까지 하나RCPS가 전 과정을 함께합니다.
+            </p>
           </div>
+
+          <motion.div className="mt-14 grid grid-cols-2 gap-5 md:grid-cols-5" variants={stagger}>
+            {[
+              ["01", "UI/UX 디자인", "사용자 흐름과 화면을 설계", TECH_UIUX],
+              ["02", "AI 기능 설계", "AI 모델·기능 아키텍처 기획", TECH_AI],
+              ["03", "프론트엔드 개발", "반응형 화면을 구현", TECH_FRONTEND],
+              ["04", "백엔드 구축", "서버·DB·API 구축", TECH_BACKEND],
+              ["05", "서비스 운영", "배포·모니터링·개선", TECH_OPS],
+            ].map(([no, t, d, img]) => (
+              <motion.div
+                key={no}
+                variants={fadeUp}
+                className="group flex flex-col items-center rounded-3xl border border-white/60 bg-white/80 p-5 text-center shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:bg-white hover:shadow-xl"
+              >
+                <div className="mb-3 flex h-24 w-24 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-50 via-cyan-50 to-emerald-50">
+                  <img src={img} alt={t} className="h-20 w-20 object-contain transition-transform duration-300 group-hover:scale-110" />
+                </div>
+                <span className="text-xs font-bold tracking-widest text-cyan-600">{no}</span>
+                <h3 className="mt-1 text-base font-bold text-slate-900">{t}</h3>
+                <p className="mt-1 text-xs leading-6 text-slate-500">{d}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </motion.section>
-
-      <Section id="technology" label="TECHNOLOGY" title={<>기획부터 AI 서비스 운영까지<br />전체 개발 과정을 함께합니다</>} bgImage={BG_TECH}>
-        UI/UX 디자인, AI 기능 설계, 프론트엔드 개발, 백엔드 구축, 서비스 운영까지 하나RCPS가 함께합니다.
-      </Section>
 
       <motion.section id="contact" className="bg-slate-950 py-20 text-white" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.25 }}>
         <div className="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-2 md:items-center">
@@ -380,12 +488,26 @@ export default function Home() {
   );
 }
 
-function Section({ id, label, title, children, bgImage }) {
+function Section({ id, label, title, children, bgImage, bgVideo }) {
   return (
     <motion.section id={id} className="relative overflow-hidden" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
-      {bgImage && (
+      {(bgImage || bgVideo) && (
         <>
-          <img src={bgImage} alt="" aria-hidden className="pointer-events-none absolute inset-0 h-full w-full object-cover" />
+          {bgVideo ? (
+            <video
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster={bgImage}
+            >
+              <source src={bgVideo} type="video/mp4" />
+            </video>
+          ) : (
+            <img src={bgImage} alt="" aria-hidden className="pointer-events-none absolute inset-0 h-full w-full object-cover" />
+          )}
           <div className="absolute inset-0 bg-gradient-to-b from-slate-50/92 via-slate-50/86 to-white/90" />
         </>
       )}
