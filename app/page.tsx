@@ -17,38 +17,38 @@ import {
   X,
 } from "lucide-react";
 
-const LOGO_SRC = "/images/hana_rcps_logo.png";
-const BOOKQUEST_SCREEN_1 = "/images/bookquest_avatar.jpg";
-const BOOKQUEST_SCREEN_2 = "/images/bookquest_mission.jpg";
-const ICOACH_SCREEN_1 = "/images/icoach_main.jpg";
-const ICOACH_SCREEN_2 = "/images/icoach_analysis.jpg";
+const LOGO_SRC = "/images/hana_rcps_logo.webp";
+const BOOKQUEST_SCREEN_1 = "/images/bookquest_avatar.webp";
+const BOOKQUEST_SCREEN_2 = "/images/bookquest_mission.webp";
+const ICOACH_SCREEN_1 = "/images/icoach_main.webp";
+const ICOACH_SCREEN_2 = "/images/icoach_analysis.webp";
 
 // Higgsfield 생성 비주얼 (따뜻한 휴먼 무드)
-const BG_ABOUT = "/images/bg_about.jpg";
-const BG_WHY = "/images/bg_why.jpg";
-const BG_TECH = "/images/bg_technology.jpg";
-const PRODUCT_BOOKQUEST = "/images/product_bookquest.jpg";
-const PRODUCT_ICOACH = "/images/product_icoach.jpg";
+const BG_ABOUT = "/images/bg_about.webp";
+const BG_WHY = "/images/bg_why.webp";
+const BG_TECH = "/images/bg_technology.webp";
+const PRODUCT_BOOKQUEST = "/images/product_bookquest.webp";
+const PRODUCT_ICOACH = "/images/product_icoach.webp";
 const DEMO_BOOKQUEST = "/images/demo_bookquest.jpg";
 const DEMO_ICOACH = "/images/demo_icoach.jpg";
 
 // WHY 섹션 카드 아이콘 (3D 아이소메트릭, nano_banana_pro)
-const WHY_EDUCATION = "/images/why_education.png";
-const WHY_SPORTS = "/images/why_sports.png";
-const WHY_GAMIFICATION = "/images/why_gamification.png";
-const WHY_UX = "/images/why_ux.png";
+const WHY_EDUCATION = "/images/why_education.webp";
+const WHY_SPORTS = "/images/why_sports.webp";
+const WHY_GAMIFICATION = "/images/why_gamification.webp";
+const WHY_UX = "/images/why_ux.webp";
 
 // Technology 섹션 프로세스 아이콘 (3D 아이소메트릭)
-const TECH_UIUX = "/images/tech_uiux.png";
-const TECH_AI = "/images/tech_ai.png";
-const TECH_FRONTEND = "/images/tech_frontend.png";
-const TECH_BACKEND = "/images/tech_backend.png";
-const TECH_OPS = "/images/tech_ops.png";
+const TECH_UIUX = "/images/tech_uiux.webp";
+const TECH_AI = "/images/tech_ai.webp";
+const TECH_FRONTEND = "/images/tech_frontend.webp";
+const TECH_BACKEND = "/images/tech_backend.webp";
+const TECH_OPS = "/images/tech_ops.webp";
 
 // 출시 예정 제품 티저 (아이언암 · 에이코치 · 핑)
-const PRODUCT_IRONARM = "/images/product_ironarm.png";
-const PRODUCT_AICOACH = "/images/product_aicoach.png";
-const PRODUCT_PING = "/images/product_ping.png";
+const PRODUCT_IRONARM = "/images/product_ironarm.webp";
+const PRODUCT_AICOACH = "/images/product_aicoach.webp";
+const PRODUCT_PING = "/images/product_ping.webp";
 
 // Higgsfield 생성 영상 (이미지를 영상화한 루프)
 const HERO_VIDEO = "/videos/main_loop.mp4";

@@ -1,6 +1,6 @@
 # AI&DDP / 하나RCPS 프로젝트 핸드오프
 
-> 마지막 업데이트: 2026-06-10 (Cowork 세션 3: ① 하나RCPS 세션2 반영(푸시 완료 `df169f0`) ② 출시예정 라인업 3종 — 아이언암·에이코치·핑 3칸 그리드, **양사이트, 커밋/푸시 대기**). 새 세션에서 이 파일을 먼저 읽고 이어서 작업.
+> 마지막 업데이트: 2026-06-11 (Cowork 세션 3: ① 하나RCPS 세션2 반영(푸시 `df169f0`) ② 출시예정 라인업 3종(푸시 aiddp `97e4bc7` · hana `d70b320`) ③ AI&DDP Press 섹션(푸시 `8c2fe7d`) ④ **전반 점검 + WebP 최적화 + 보안/캐시 헤더 — 양사이트, 커밋/푸시 대기**). 새 세션에서 이 파일을 먼저 읽고 이어서 작업.
 
 ## 1. 개요
 회사 홈페이지 2개를 운영. **동일 Next.js 코드베이스**를 복제해 브랜딩만 다르게 함.
@@ -80,17 +80,32 @@ AI&DDP는 하나RCPS를 복제해 회사명/로고/도메인/연락처만 리브
 - commits: `4f54156`(대량 배치: OG/Technology/About/아이언암/데모제거/히어로/WHY), `cc9cafc`(캐러셀 우상단 재배치).
 - ~~하나RCPS는 세션2 변경 전부 미적용~~ → **세션3에서 반영 완료.**
 
-**세션3 (06-10) — 하나RCPS에 세션2 전체 포팅 (커밋/푸시 대기):**
+**세션3 (06-10) — 하나RCPS에 세션2 전체 포팅 (푸시 완료 `df169f0`):**
 - aiddp `page.tsx`(세션2 최신)를 가져와 하나RCPS 브랜딩 치환: 로고 `hana_rcps_logo.png` / 회사명 하나RCPS / hanarcps.com / 주소 수원 광교 / yunagunwoo@gmail.com / © HANA RCPS / "WHY·ABOUT HANA RCPS". 데모제거·모바일히어로 재배치·WHY 이미지카드·Technology 5단계·About 영상·아이언암 티저 모두 포함.
 - `layout.tsx`: 기본값("Create Next App", lang=en) → 하나RCPS 타이틀/설명 + openGraph/twitter + `metadataBase: https://hanarcps.com`, lang=ko. ⚠️ canonical이 www인지 apex인지 Vercel Domains에서 확인 — www가 primary면 metadataBase를 www로 수정.
 - 하나RCPS용 `og_image.png`(1200×630) 신규: 이미지 생성 MCP 없이 PIL로 배경(네이비→에메랄드 그라데이션 + 입자 네트워크 + 시안 글로우) 직접 생성 + `app/icon.png` 엠블럼 흰카드 + Pretendard 텍스트 합성. **크레딧 사용 0**.
 - 검증: 치환 횟수 assert 전건 일치, UTF-8 재독, esbuild 구문 OK, 파일 끝 온전(618줄).
 - 푸시 완료: 하나RCPS `df169f0` (preview.html 포함 커밋됨).
 
-**세션3 후반 — 출시예정 라인업 3종 (양사이트, 커밋/푸시 대기):**
+**세션3 후반 — 출시예정 라인업 3종 (양사이트, 푸시 완료 aiddp `97e4bc7` · hana `d70b320`):**
 - Products의 아이언암 풀폭 카드 → **아이언암·에이코치·핑 3칸 그리드**(`md:grid-cols-3`, 상단 이미지 h-52 + COMING SOON 뱃지 + 텍스트, hover lift) 교체. 신규 상수 `PRODUCT_AICOACH` `PRODUCT_PING`. 두 레포 동일 적용, esbuild 검증 OK.
 - 신규 이미지(nano_banana_pro 16:9, 장당 2크레딧, 양쪽 `public/images/` 동일 사본): `product_aicoach.png`(거실에서 시안 홀로그램 건강 대시보드 보는 남성) · `product_ping.png`(공원 노을 가족 4인 셀피 + 오렌지 연결선).
 - 카드 문구 — 에이코치: "건강검진 결과를 입력하면 AI가 정상·주의·위험을 한눈에 진단하고, 연도별 변화 추적과 맞춤 건강 코칭을 제공합니다." / 핑: "하루 한 장의 사진으로 가족의 안부를 전하는 생존신고 앱. 코멘트와 리액션, 스트릭으로 가족의 타임라인이 쌓입니다."
+
+**세션3 (06-11) — 보도자료(Press) 섹션 (AI&DDP만, 푸시 완료 `8c2fe7d`):**
+- nav에 Press 링크 추가, Technology↔Contact 사이 `#press` 섹션(bg-slate-50). 카드 3개: 매체 뱃지+날짜+제목+요약+"기사 보기"(새 탭 링크).
+- 기사 3건(회사 레퍼런스: 22대 총선 MBN AI 빅데이터 총선 분석 시스템 공동개발 — 국내 최초, 'Sori AI' 소셜모니터링 엔진 유권자 호감도 조사):
+  - MBN 2024.04.02 — "MBN '선택 2024' 개표 방송…AI 빅데이터 총선 예측 모델 가동" (mbn.co.kr/news/politics/5018179)
+  - CBC뉴스 2024.04.09 — "MBN '민심 2024' 개표 방송 예고…" (cbci.co.kr idxno=464652)
+  - 디지털타임스 2024.05.12 — "[오늘의 DT인] 윤태일 AI&DDP 대표 인터뷰" (dt.co.kr/article/11583628)
+- ⚠️ mbn.co.kr은 Cowork web_fetch 차단 도메인 — 제목/날짜는 네이트 송고본·검색으로 확인함.
+
+**세션3 (06-11) — 전반 점검 + 최적화 (양사이트, 커밋/푸시 대기):**
+- 점검 리포트: `C:\Users\ggyeo\AIDDP\홈페이지_점검리포트_2026-06-11.md` — 보안 양호(시크릿 0건, Next 16.2.6 최신 패치), 핵심 이슈는 에셋 과대였음.
+- **이미지 22개 WebP 변환+리사이즈, 원본 삭제**: 이미지 16MB→0.65MB(96%↓), page.tsx 참조 전부 `.webp`로 갱신. og_image.png·파비콘·demo_*.jpg는 유지(미변환).
+- **next.config.ts**: 보안 헤더(nosniff/X-Frame-Options SAMEORIGIN/Referrer-Policy/Permissions-Policy) + `/images`·`/videos` Cache-Control(`max-age=86400, stale-while-revalidate=604800`).
+- ⚠️ 이후 이미지 추가 시 WebP 사용 권장. 같은 파일명으로 에셋 교체 시 캐시 1일 주의(파일명 버전업 권장).
+- 남은 권장 과제: 미사용 demo/hero 파일·DEMO_* 상수 정리, npm audit moderate 2건(next 번들 postcss — 다음 next 패치 시 업데이트, `npm audit fix --force` 금지), @ts-nocheck 제거, 히어로 영상 2개 이중 다운로드 개선, GitHub/Vercel/가비아 2FA 확인.
 
 ## 8. 명함 (AI&DDP) — `C:\Users\ggyeo\AIDDP\namecard\`
 - 김청현 이사 양면 명함, **인쇄용 PDF 90×50mm + 도련 3mm**, Pretendard 폰트, 로고 엠블럼(배경제거).
