@@ -1,0 +1,99 @@
+{
+  "origin": "http://127.0.0.1:48220",
+  "scope": "actual Next production routes, viewport emulation",
+  "runs": [
+    {
+      "route": "/",
+      "width": 1280,
+      "dimensions": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "broken": 0
+      },
+      "initialVideoRequests": 0,
+      "errors": []
+    },
+    {
+      "route": "/dangitalk",
+      "width": 1280,
+      "dimensions": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "broken": 0
+      },
+      "initialVideoRequests": 0,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "dimensions": {
+        "width": 768,
+        "scrollWidth": 768,
+        "broken": 0
+      },
+      "initialVideoRequests": 0,
+      "errors": []
+    },
+    {
+      "route": "/dangitalk",
+      "width": 768,
+      "dimensions": {
+        "width": 768,
+        "scrollWidth": 768,
+        "broken": 0
+      },
+      "initialVideoRequests": 0,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "width": 375,
+      "dimensions": {
+        "width": 375,
+        "scrollWidth": 375,
+        "broken": 0
+      },
+      "initialVideoRequests": 0,
+      "errors": []
+    },
+    {
+      "route": "/dangitalk",
+      "width": 375,
+      "dimensions": {
+        "width": 375,
+        "scrollWidth": 375,
+        "broken": 0
+      },
+      "initialVideoRequests": 0,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "width": 320,
+      "dimensions": {
+        "width": 320,
+        "scrollWidth": 320,
+        "broken": 0
+      },
+      "initialVideoRequests": 0,
+      "errors": []
+    },
+    {
+      "route": "/dangitalk",
+      "width": 320,
+      "dimensions": {
+        "width": 320,
+        "scrollWidth": 320,
+        "broken": 0
+      },
+      "initialVideoRequests": 0,
+      "errors": []
+    }
+  ],
+  "errors": [],
+  "browser": "154.0.8037.99",
+  "desktopAutoSingleSource": true,
+  "twoLoopsThenReplayAndPause": true,
+  "mediaRange": true
+}

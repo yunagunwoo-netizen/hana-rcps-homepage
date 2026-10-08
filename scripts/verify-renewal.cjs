@@ -1,0 +1,66 @@
+// Local production build and public post-deploy QA. User authorized headless-browser verification.
+/* eslint-disable @typescript-eslint/no-require-imports -- Executable Node CommonJS QA helper; not browser application code. */
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+if(!process.env.PREVIEW_PLAYWRIGHT_ROOT)throw new Error('Set PREVIEW_PLAYWRIGHT_ROOT to an installed Playwright package.');
+const {chromium}=require(process.env.PREVIEW_PLAYWRIGHT_ROOT);
+const origin=(process.env.RENEWAL_ORIGIN||'http://127.0.0.1:48220').replace(/\/$/,'');
+const output=path.resolve(__dirname,'../docs/renewal/production/qa',process.env.RENEWAL_QA_LABEL||'local');fs.mkdirSync(output,{recursive:true});
+const result={origin,scope:'actual Next production routes, viewport emulation',runs:[],errors:[]};
+(async()=>{const browser=await chromium.launch({channel:'chrome',headless:true,chromiumSandbox:true});result.browser=browser.version();
+ try{
+  for(const width of [1280,768,375,320]){
+   const context=await browser.newContext({viewport:{width,height:width>700?900:812},reducedMotion:'reduce'});
+   const page=await context.newPage(),errors=[],videoRequests=[];
+   page.on('pageerror',error=>errors.push(error.message));page.on('request',request=>{if(/\.mp4(?:\?|$)/.test(request.url()))videoRequests.push(request.url());});
+   for(const route of ['/','/dangitalk']){
+    videoRequests.length=0;
+    const response=await page.goto(origin+route,{waitUntil:'load',timeout:30000});assert.equal(response.status(),200);
+    await page.evaluate(()=>document.fonts.ready);
+    assert.equal(videoRequests.length,0,'Reduced-motion first paint should not fetch MP4');
+    for(const section of await page.locator('main>section').all())await section.scrollIntoViewIfNeeded();
+    await page.waitForFunction(()=>[...document.images].every(i=>i.complete&&i.naturalWidth>0));
+    const dimensions=await page.evaluate(()=>({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,broken:[...document.images].filter(i=>!i.naturalWidth).length}));assert(dimensions.scrollWidth<=width+1,route+' overflow '+JSON.stringify(dimensions));assert.equal(dimensions.broken,0);
+    const text=await page.locator('body').innerText();assert(!/DESIGN 06|서비스 시안|디자인 검토용/.test(text));
+    assert(!(await page.locator('meta[name=robots]').getAttribute('content')).includes('noindex'));
+    assert.equal(new URL(await page.locator('link[rel=canonical]').getAttribute('href')).href,new URL('https://hanarcps.com'+(route==='/'?'/':route)).href);
+    if(route==='/'){
+     assert((await page.locator('.hero-ping-link').getAttribute('href')).startsWith('https://ping.ai.kr/'));
+     if(width<700){await page.locator('.menu-button').click();assert.equal(await page.locator('.menu-button').getAttribute('aria-expanded'),'true');await page.keyboard.press('Escape');assert.equal(await page.locator('.menu-button').getAttribute('aria-expanded'),'false');assert(await page.locator('.menu-button').evaluate(i=>i===document.activeElement));}
+    }else{
+     assert((await page.locator('.dheader .dlogo img').getAttribute('src')).endsWith('dangitalk-dubi-d.webp'));
+     assert.equal(await page.locator('input[type=file]').count(),0);
+     assert(text.includes('아직 구현되지 않았습니다'));
+     await page.getByRole('tab',{name:/이름·견종·테마/}).click();assert((await page.getByRole('tabpanel').locator('img').getAttribute('src')).endsWith('dang-theme.jpg'));
+     await page.getByRole('tab',{name:/이름·견종·테마/}).press('Home');assert((await page.getByRole('tabpanel').locator('img').getAttribute('src')).endsWith('dang-family.jpg'));
+     if(width===375){const motion=page.locator('[data-landing-motion]');await motion.scrollIntoViewIfNeeded();await motion.locator('button').click();await page.waitForFunction(()=>document.querySelector('video').currentTime>.1);assert((await motion.locator('video').getAttribute('src')).endsWith('dang-mobile-v2.mp4'));await motion.locator('button').click();assert(await motion.locator('video').evaluate(video=>video.paused));assert.equal(new Set(videoRequests).size,1);}
+     const headerLogo=page.locator('.dheader .dlogo');assert.equal(await headerLogo.locator('img').evaluate(i=>i.width),width<700?28:34);
+    }
+    await page.evaluate(()=>scrollTo(0,0));
+    if(width===1280||width===375)await page.screenshot({path:path.join(output,(route==='/'?'company':'dang')+'-'+width+'.png')});
+    result.runs.push({route,width,dimensions,initialVideoRequests:0,errors:[...errors]});
+   }
+   // Exercise Next client navigation: route CSS and media effects must not leak across pages.
+   await page.locator('.dfooter a[href="/"]').click();await page.waitForSelector('.company-site');
+   await page.locator('.service-dang a.text-link').click();await page.waitForSelector('.dang-site');
+   assert((await page.locator('.dheader .dlogo img').getAttribute('src')).endsWith('dangitalk-dubi-d.webp'));
+   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+   assert.equal(errors.length,0,'Hydration/runtime errors: '+errors.join('\n'));
+   await context.close();
+  }
+  const context=await browser.newContext({viewport:{width:1280,height:900}}),page=await context.newPage(),videos=[];
+  page.on('request',request=>{if(/\.mp4/.test(request.url()))videos.push(request.url());});
+  await page.goto(origin+'/',{waitUntil:'load'});await page.waitForFunction(()=>document.querySelector('video').currentTime>.1);
+  assert(videos.length>0);assert(videos.every(url=>url.endsWith('ping-desktop-v1.mp4')));result.desktopAutoSingleSource=true;
+  await page.waitForFunction(()=>document.querySelector('[data-landing-motion]').dataset.motionState==='finished',{timeout:15000});
+  assert(await page.locator('video').evaluate(video=>video.paused));
+  const replay=page.locator('[data-motion-control]');assert.equal(await replay.getAttribute('aria-pressed'),'false');
+  await replay.click();await page.waitForFunction(()=>document.querySelector('video').currentTime>.1);await replay.click();
+  assert(await page.locator('video').evaluate(video=>video.paused));result.twoLoopsThenReplayAndPause=true;
+  await context.close();
+  for(const [from,to] of [['/dangitalk.html','/dangitalk'],['/dang-v7.html','/dangitalk'],['/index.html','/'],['/ping.html','https://ping.ai.kr/']]){const response=await fetch(origin+from,{redirect:'manual'});assert.equal(response.status,308);assert(response.headers.get('location').endsWith(to));}
+  const range=await fetch(origin+'/renewal/assets/landing-motion/dang-mobile-v2.mp4',{headers:{Range:'bytes=0-1023'}});assert.equal(range.status,206);assert.equal((await range.arrayBuffer()).byteLength,1024);result.mediaRange=true;
+  assert((await(await fetch(origin+'/sitemap.xml')).text()).includes('https://hanarcps.com/dangitalk'));
+ }catch(error){result.errors.push(error.message);throw error;}
+ finally{await browser.close();fs.writeFileSync(path.join(output,'QA.json'),JSON.stringify(result,null,2));}
+ console.log(JSON.stringify(result,null,2));
+})().catch(error=>{console.error(error);process.exitCode=1});

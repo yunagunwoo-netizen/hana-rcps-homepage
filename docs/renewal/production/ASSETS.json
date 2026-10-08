@@ -1,0 +1,115 @@
+{
+  "source": "approved company v6 + Dang v7/D, offline reachable assets",
+  "files": [
+    {
+      "file": "/renewal/assets/company-logo.webp",
+      "bytes": 14478,
+      "sha256": "541875e7950f6bb2d25a7f059ecc2a609b03f7550645ef2f89c3d8a151614577"
+    },
+    {
+      "file": "/renewal/assets/landing-motion/ping-poster-v1.webp",
+      "bytes": 35524,
+      "sha256": "75b59ff33eff13eafe7c4e65c15f063f5cd061443a192477b9a104cb75441bd2"
+    },
+    {
+      "file": "/renewal/assets/landing-motion/ping-mobile-v1.mp4",
+      "bytes": 181675,
+      "sha256": "6bddb0a6f441b8ad23dcccd631a4d443718975f0682001a887dbc6fe236fc35d"
+    },
+    {
+      "file": "/renewal/assets/landing-motion/ping-desktop-v1.mp4",
+      "bytes": 380256,
+      "sha256": "11bdf6ab2651b1a2df246ba533cb3138c1c4b3e54d668b53a6dca51e438c5a8f"
+    },
+    {
+      "file": "/renewal/assets/ping-photos.webp",
+      "bytes": 474898,
+      "sha256": "26f154aecfb920a6705910876f06a949f626c460d89a809e92f802eda835531f"
+    },
+    {
+      "file": "/renewal/assets/app/dang-family.jpg",
+      "bytes": 20974,
+      "sha256": "9bd7dd70098bcfb8c0ca2831e7c54de276c58001ff94a40dadce372a6a3e9309"
+    },
+    {
+      "file": "/renewal/assets/brand/dangitalk-dubi-d.webp",
+      "bytes": 18576,
+      "sha256": "5a80dcd6207b26c0152b273bc4bb330485afff25df7f851e7bd5eb485287b984"
+    },
+    {
+      "file": "/renewal/assets/toobi-avatars/family-portrait.webp",
+      "bytes": 45368,
+      "sha256": "aba84cb0fc534797ea96a601352d936fd5fda7da2c19930ad9b7a16ff0fc64c0"
+    },
+    {
+      "file": "/renewal/assets/toobi-avatars/avatar-parent-1.webp",
+      "bytes": 8298,
+      "sha256": "7890cbe987b19adee03e3074dbdb27ab9ed1fb416791070b01643e43fb6613ca"
+    },
+    {
+      "file": "/renewal/assets/toobi-avatars/avatar-parent-2.webp",
+      "bytes": 10660,
+      "sha256": "6d50911f95a35ee3c3d577c36acb4121ea205ee8312d1356b4e1193ada2e7426"
+    },
+    {
+      "file": "/renewal/assets/toobi-avatars/avatar-member-1.webp",
+      "bytes": 9398,
+      "sha256": "e63d43c9f528820e5f75648189b7af96231119ed98711b62b982003399dcd33f"
+    },
+    {
+      "file": "/renewal/assets/toobi-avatars/avatar-member-2.webp",
+      "bytes": 6664,
+      "sha256": "51d49307a094d638a2b5dcb6f2e4d3a88b7810aaabf3bfe2a7cd8e55f043dcb5"
+    },
+    {
+      "file": "/renewal/assets/toobi-avatars/dog-avatar.webp",
+      "bytes": 8618,
+      "sha256": "23858924153fb5d7b371a7ae814261feb85f1763659d481106d1cffb6845cd21"
+    },
+    {
+      "file": "/renewal/assets/landing-motion/dang-poster-v2.webp",
+      "bytes": 31200,
+      "sha256": "61c10b4c18857b71f38d554cf22329a3ac2c5688a76a55486d6f264c282c5bcd"
+    },
+    {
+      "file": "/renewal/assets/landing-motion/dang-mobile-v2.mp4",
+      "bytes": 277413,
+      "sha256": "cb484384d2cfd284b6ed4c5577aefeebf7b9b0a251de88bfd6a0015ec077fd0f"
+    },
+    {
+      "file": "/renewal/assets/landing-motion/dang-desktop-v2.mp4",
+      "bytes": 590883,
+      "sha256": "38c08e0cc0e6d2e44a493c45bb8739a730f21096b92f3f1292cf0cad3f0f37eb"
+    },
+    {
+      "file": "/renewal/assets/app/dang-theme.jpg",
+      "bytes": 37313,
+      "sha256": "a17433f7438a8a6197fe5ec125cc264a292f8d1330e73ee86687ba358085eacc"
+    },
+    {
+      "file": "/renewal/assets/toobi-avatars/dog-reaction-laugh.webp",
+      "bytes": 11798,
+      "sha256": "d72aa812fee709bf63a039806c94703fd9a6cade824fc8f2556f9c6973f8b841"
+    },
+    {
+      "file": "/renewal/assets/toobi-avatars/dog-reaction-love.webp",
+      "bytes": 13714,
+      "sha256": "e79bc4d51b60ac5820323d862a641532be52725b3cf457a0ca89e9790890b0cc"
+    },
+    {
+      "file": "/renewal/assets/app/dang-dm.jpg",
+      "bytes": 12159,
+      "sha256": "06ba19e71e87578769ca91635a9f848a36585aa5f0d97534add477c72e28a1af"
+    },
+    {
+      "file": "/renewal/assets/app/dang-settings.jpg",
+      "bytes": 32922,
+      "sha256": "663314d69b984a622949c41ad012addcd3de0bf1e1a39cc09ff901fd83adc533"
+    },
+    {
+      "file": "/renewal/assets/brand/dangitalk-dubi-d-apple.png",
+      "bytes": 49269,
+      "sha256": "3d3cbf822b71c984f782e2901fe5387da35a021e039630666659f341b621d47c"
+    }
+  ]
+}

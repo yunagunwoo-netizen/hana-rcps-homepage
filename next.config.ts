@@ -15,11 +15,22 @@ const staticCacheHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      { source: "/dangitalk.html", destination: "/dangitalk", permanent: true },
+      { source: "/dangitalk.htm", destination: "/dangitalk", permanent: true },
+      { source: "/dang-v7.html", destination: "/dangitalk", permanent: true },
+      { source: "/index.html", destination: "/", permanent: true },
+      { source: "/company-v6.html", destination: "/", permanent: true },
+      { source: "/ping.html", destination: "https://ping.ai.kr/", permanent: true },
+    ];
+  },
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },
       { source: "/images/:path*", headers: staticCacheHeaders },
       { source: "/videos/:path*", headers: staticCacheHeaders },
+      { source: "/renewal/assets/:path*", headers: staticCacheHeaders },
     ];
   },
 };
