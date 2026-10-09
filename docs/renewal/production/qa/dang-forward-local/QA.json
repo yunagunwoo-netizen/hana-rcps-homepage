@@ -1,0 +1,254 @@
+{
+  "origin": "http://127.0.0.1:48220",
+  "scope": "actual Next production routes, viewport emulation",
+  "runs": [
+    {
+      "route": "/",
+      "width": 1280,
+      "dimensions": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "broken": 0
+      },
+      "initialVideoRequests": 0,
+      "errors": []
+    },
+    {
+      "route": "/dangitalk",
+      "width": 1280,
+      "dimensions": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "broken": 0
+      },
+      "initialVideoRequests": 0,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "dimensions": {
+        "width": 768,
+        "scrollWidth": 768,
+        "broken": 0
+      },
+      "initialVideoRequests": 0,
+      "errors": []
+    },
+    {
+      "route": "/dangitalk",
+      "width": 768,
+      "dimensions": {
+        "width": 768,
+        "scrollWidth": 768,
+        "broken": 0
+      },
+      "initialVideoRequests": 0,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "width": 375,
+      "dimensions": {
+        "width": 375,
+        "scrollWidth": 375,
+        "broken": 0
+      },
+      "initialVideoRequests": 0,
+      "errors": []
+    },
+    {
+      "route": "/dangitalk",
+      "width": 375,
+      "dimensions": {
+        "width": 375,
+        "scrollWidth": 375,
+        "broken": 0
+      },
+      "initialVideoRequests": 0,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "width": 320,
+      "dimensions": {
+        "width": 320,
+        "scrollWidth": 320,
+        "broken": 0
+      },
+      "initialVideoRequests": 0,
+      "errors": []
+    },
+    {
+      "route": "/dangitalk",
+      "width": 320,
+      "dimensions": {
+        "width": 320,
+        "scrollWidth": 320,
+        "broken": 0
+      },
+      "initialVideoRequests": 0,
+      "errors": []
+    }
+  ],
+  "avatarChecks": [
+    {
+      "width": 1280,
+      "avatars": [
+        {
+          "width": 70.59375,
+          "height": 70.59375,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        },
+        {
+          "width": 70.59375,
+          "height": 70.59375,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        },
+        {
+          "width": 70.609375,
+          "height": 70.609375,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        },
+        {
+          "width": 70.59375,
+          "height": 70.59375,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        },
+        {
+          "width": 70.59375,
+          "height": 70.59375,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "avatars": [
+        {
+          "width": 50,
+          "height": 50,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        },
+        {
+          "width": 50,
+          "height": 50,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        },
+        {
+          "width": 50,
+          "height": 50,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        },
+        {
+          "width": 50,
+          "height": 50,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        },
+        {
+          "width": 50,
+          "height": 50,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        }
+      ]
+    },
+    {
+      "width": 375,
+      "avatars": [
+        {
+          "width": 50.59375,
+          "height": 50.59375,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        },
+        {
+          "width": 50.59375,
+          "height": 50.59375,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        },
+        {
+          "width": 50.609375,
+          "height": 50.609375,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        },
+        {
+          "width": 50.59375,
+          "height": 50.59375,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        },
+        {
+          "width": 50.59375,
+          "height": 50.59375,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "avatars": [
+        {
+          "width": 40.390625,
+          "height": 40.390625,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        },
+        {
+          "width": 40.40625,
+          "height": 40.40625,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        },
+        {
+          "width": 40.390625,
+          "height": 40.390625,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        },
+        {
+          "width": 40.40625,
+          "height": 40.40625,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        },
+        {
+          "width": 40.40625,
+          "height": 40.40625,
+          "naturalWidth": 320,
+          "naturalHeight": 320
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "browser": "154.0.8037.99",
+  "desktopAutoSingleSource": true,
+  "companyContinuesAfterTwoLoops": true,
+  "outOfViewPauseAndResume": true,
+  "simulatedHiddenTabPauseAndResume": true,
+  "manualPausePersists": true,
+  "mobileManualPlaybackOnly": true,
+  "saveDataManualPlaybackOnly": true,
+  "dangMedia": {
+    "duration": 4,
+    "width": 720,
+    "height": 1280,
+    "src": "http://127.0.0.1:48220/renewal/assets/landing-motion/dang-desktop-v3.mp4",
+    "muted": true
+  },
+  "dangStillStopsAfterTwoLoops": true,
+  "mediaRange": true
+}

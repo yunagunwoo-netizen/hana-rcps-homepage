@@ -1,0 +1,60 @@
+{
+  "fullDecode": "Passed by build-dang-video.cjs for both final files",
+  "duration": 4,
+  "audioTracks": 0,
+  "codec": "H.264/yuv420p",
+  "atomChecks": [
+    {
+      "file": "dang-mobile-v3.mp4",
+      "faststart": true,
+      "atoms": [
+        {
+          "type": "ftyp",
+          "offset": 0,
+          "size": 32
+        },
+        {
+          "type": "moov",
+          "offset": 32,
+          "size": 1782
+        },
+        {
+          "type": "free",
+          "offset": 1814,
+          "size": 8
+        },
+        {
+          "type": "mdat",
+          "offset": 1822,
+          "size": 226192
+        }
+      ]
+    },
+    {
+      "file": "dang-desktop-v3.mp4",
+      "faststart": true,
+      "atoms": [
+        {
+          "type": "ftyp",
+          "offset": 0,
+          "size": 32
+        },
+        {
+          "type": "moov",
+          "offset": 32,
+          "size": 1975
+        },
+        {
+          "type": "free",
+          "offset": 2007,
+          "size": 8
+        },
+        {
+          "type": "mdat",
+          "offset": 2015,
+          "size": 473385
+        }
+      ]
+    }
+  ]
+}

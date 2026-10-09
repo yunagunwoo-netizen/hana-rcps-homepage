@@ -110,6 +110,22 @@
       "file": "/renewal/assets/brand/dangitalk-dubi-d-apple.png",
       "bytes": 49269,
       "sha256": "3d3cbf822b71c984f782e2901fe5387da35a021e039630666659f341b621d47c"
+    },
+    {
+      "file": "/renewal/assets/landing-motion/dang-desktop-v3.mp4",
+      "bytes": 475400,
+      "sha256": "6f8265aee4ddf51dbf6212c9bb6bac8d14c82c622ad326fb59bcd4eec887a937"
+    },
+    {
+      "file": "/renewal/assets/landing-motion/dang-mobile-v3.mp4",
+      "bytes": 228014,
+      "sha256": "3e4fd3cf6425bcecf56b55ad14b589a2665906135dcd2d7289d6b4fb851ccae2"
+    },
+    {
+      "file": "/renewal/assets/landing-motion/dang-poster-v3.webp",
+      "bytes": 33998,
+      "sha256": "d8b6e499fefdb1179cc61522efa9dd09fcd44ef51f9544d4d8d2935d5b0759e7"
     }
-  ]
+  ],
+  "currentDangVideo": "v3 forward-only + family reaction; v2 files retained as archived assets"
 }

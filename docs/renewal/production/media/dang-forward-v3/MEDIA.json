@@ -1,0 +1,64 @@
+{
+  "dateKst": "2026-10-09",
+  "source": "docs/renewal/media-review/family-reaction-source.mp4",
+  "sourceSha256": "8e7051af44955529c160b6753764bc0ccb9a1b8d81d20241048ef7543032f425",
+  "sourceJob": "f5bb8832-7f79-4535-94a5-097b8edee435",
+  "decision": "Forward-only 2s wide walk (source2.3–4.3), then 2s family close-up (source0.3–2.3), direct cuts. No reverse, crossfade, artificial interpolation, audio or new generation.",
+  "timeline": [
+    {
+      "at": 0,
+      "duration": 2,
+      "sourceFrom": 2.3,
+      "sourceTo": 4.3,
+      "crop": null
+    },
+    {
+      "at": 2,
+      "duration": 2,
+      "sourceFrom": 0.3,
+      "sourceTo": 2.3,
+      "crop": {
+        "x": 0,
+        "y": 240,
+        "width": 450,
+        "height": 800
+      }
+    }
+  ],
+  "newGenerationCalls": 0,
+  "paidCalls": 0,
+  "creditBalance": "Not queried; no new paid operation.",
+  "files": [
+    {
+      "file": "/renewal/assets/landing-motion/dang-desktop-v3.mp4",
+      "bytes": 475400,
+      "sha256": "6f8265aee4ddf51dbf6212c9bb6bac8d14c82c622ad326fb59bcd4eec887a937",
+      "width": 720,
+      "height": 1280,
+      "fps": 24,
+      "duration": 4,
+      "audioTracks": 0,
+      "filter": "[0:v]split=2[wide][reaction];[wide]trim=start=2.3:end=4.3,setpts=PTS-STARTPTS,scale=720:1280:flags=lanczos,fps=24,setsar=1[a];[reaction]trim=start=0.3:end=2.3,setpts=PTS-STARTPTS,crop=450:800:0:240,scale=720:1280:flags=lanczos,fps=24,setsar=1[b];[a][b]concat=n=2:v=1:a=0[out]"
+    },
+    {
+      "file": "/renewal/assets/landing-motion/dang-mobile-v3.mp4",
+      "bytes": 228014,
+      "sha256": "3e4fd3cf6425bcecf56b55ad14b589a2665906135dcd2d7289d6b4fb851ccae2",
+      "width": 480,
+      "height": 854,
+      "fps": 20,
+      "duration": 4,
+      "audioTracks": 0,
+      "filter": "[0:v]split=2[wide][reaction];[wide]trim=start=2.3:end=4.3,setpts=PTS-STARTPTS,scale=480:854:flags=lanczos,fps=20,setsar=1[a];[reaction]trim=start=0.3:end=2.3,setpts=PTS-STARTPTS,crop=450:800:0:240,scale=480:854:flags=lanczos,fps=20,setsar=1[b];[a][b]concat=n=2:v=1:a=0[out]"
+    },
+    {
+      "file": "/renewal/assets/landing-motion/dang-poster-v3.webp",
+      "bytes": 33998,
+      "sha256": "d8b6e499fefdb1179cc61522efa9dd09fcd44ef51f9544d4d8d2935d5b0759e7"
+    }
+  ],
+  "tools": {
+    "ffmpeg": "ffmpeg version 9.0.1-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers\r",
+    "ffprobe": "ffprobe version 9.0.1-full_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers\r"
+  }
+}
