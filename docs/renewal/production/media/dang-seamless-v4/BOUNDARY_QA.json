@@ -1,0 +1,19 @@
+{
+  "method": "Decoded grayscale90x160 family/dog ROI y48–112; last/first vs adjacent frames. Supporting metric, not a guarantee of perceived seamlessness.",
+  "metrics": [
+    {
+      "version": 3,
+      "frames": 96,
+      "boundaryMeanAbsoluteGrayDifference": 60.14652777777778,
+      "medianAdjacent": 1.3758680555555556,
+      "p95Adjacent": 3.8105902777777776
+    },
+    {
+      "version": 4,
+      "frames": 48,
+      "boundaryMeanAbsoluteGrayDifference": 1.9434027777777778,
+      "medianAdjacent": 2.177604166666667,
+      "p95Adjacent": 2.7414930555555554
+    }
+  ]
+}

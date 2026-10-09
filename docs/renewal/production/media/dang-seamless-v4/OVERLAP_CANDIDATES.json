@@ -1,0 +1,33 @@
+{
+  "method": "Mean absolute grayscale difference over family/dog ROI,6matchedframepairs per .25s; supporting selection only,visualinspection still required",
+  "tests": [
+    {
+      "from": 9.25,
+      "to": 11.5,
+      "overlap": 0.25,
+      "outputDuration": 2,
+      "meanAbsoluteDifferenceROI": 4.167129629629629
+    },
+    {
+      "from": 9.5,
+      "to": 11.75,
+      "overlap": 0.25,
+      "outputDuration": 2,
+      "meanAbsoluteDifferenceROI": 4.2340277777777775
+    },
+    {
+      "from": 9.75,
+      "to": 12,
+      "overlap": 0.25,
+      "outputDuration": 2,
+      "meanAbsoluteDifferenceROI": 4.2841203703703705
+    },
+    {
+      "from": 9,
+      "to": 11.25,
+      "overlap": 0.25,
+      "outputDuration": 2,
+      "meanAbsoluteDifferenceROI": 5.153842592592593
+    }
+  ]
+}

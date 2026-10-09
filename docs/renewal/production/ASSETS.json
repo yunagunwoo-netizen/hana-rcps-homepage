@@ -125,7 +125,22 @@
       "file": "/renewal/assets/landing-motion/dang-poster-v3.webp",
       "bytes": 33998,
       "sha256": "d8b6e499fefdb1179cc61522efa9dd09fcd44ef51f9544d4d8d2935d5b0759e7"
+    },
+    {
+      "file": "/renewal/assets/landing-motion/dang-desktop-v4.mp4",
+      "bytes": 204220,
+      "sha256": "cf9b2ced57a48701118670abf1897b8d0617d17c544c10362fa413b43377c33c"
+    },
+    {
+      "file": "/renewal/assets/landing-motion/dang-mobile-v4.mp4",
+      "bytes": 91888,
+      "sha256": "242d517a730bfe801fe2441425f04ed951e5b2c84bf940a82dc1b69687acaf03"
+    },
+    {
+      "file": "/renewal/assets/landing-motion/dang-poster-v4.webp",
+      "bytes": 33756,
+      "sha256": "664b3d39f2e8a6ed06911b0ab686dcb8ef3d65f6aade85e1bb6483f6ec7d672a"
     }
   ],
-  "currentDangVideo": "v3 forward-only + family reaction; v2 files retained as archived assets"
+  "currentDangVideo": "v4 single-shot forward-only short-overlap native continuous loop; v2/v3 preserved"
 }

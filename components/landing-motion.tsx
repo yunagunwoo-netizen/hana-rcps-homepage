@@ -2,10 +2,11 @@
 /* eslint-disable @next/next/no-img-element -- A pre-sized poster must remain visible without JavaScript. */
 import { useEffect, useRef } from "react";
 
-type Props = { id: string; name: string; poster: string; posterAlt: string; mobile: string; desktop: string; className?: string; priority?: boolean; repeatWhileVisible?: boolean };
+type Props = { id: string; name: string; poster: string; posterAlt: string; mobile: string; desktop: string; className?: string; priority?: boolean; repeatWhileVisible?: boolean; nativeLoop?: boolean };
 type Connection = EventTarget & { saveData?: boolean };
 
-export default function LandingMotion({ id, name, poster, posterAlt, mobile, desktop, className = "motion-card", priority = false, repeatWhileVisible = false }: Props) {
+export default function LandingMotion({ id, name, poster, posterAlt, mobile, desktop, className = "motion-card", priority = false, repeatWhileVisible = false, nativeLoop = false }: Props) {
+  const shouldNativeLoop = nativeLoop && repeatWhileVisible;
   const rootRef = useRef<HTMLElement>(null);
   useEffect(() => {
     const root = rootRef.current;
@@ -55,7 +56,7 @@ export default function LandingMotion({ id, name, poster, posterAlt, mobile, des
       if (["playing", "loading"].includes(root.dataset.motionState || "")) stop(true);
       else { mode = "manual"; autoAttempted = true; userPaused = false; void play(["finished", "error"].includes(root.dataset.motionState || "") || !loaded); }
     };
-    const ended = () => { completed++; if (!repeatWhileVisible && completed >= 2) { intent = false; autoAttempted = true; update("finished"); } else if (visible && !document.hidden && intent) void play(); };
+    const ended = () => { if (shouldNativeLoop) return; completed++; if (!repeatWhileVisible && completed >= 2) { intent = false; autoAttempted = true; update("finished"); } else if (visible && !document.hidden && intent) void play(); };
     const error = () => { request++; intent = false; root.classList.remove("has-motion-frame"); update("error"); };
     const visibility = () => { if (document.hidden) stop(false, intent); else maybeStart(); };
     const preference = () => { if (blocksAuto() && mode === "auto") { autoAttempted = true; stop(); } };
@@ -68,11 +69,11 @@ export default function LandingMotion({ id, name, poster, posterAlt, mobile, des
     if (connection) listen(connection, "change", preference);
     listen(window, "load", maybeStart); listen(image, "load", maybeStart); observer?.observe(root); maybeStart();
     return () => { alive = false; request++; observer?.disconnect(); cleanup.forEach(action => action()); video.pause(); video.removeAttribute("src"); video.load(); };
-  }, [desktop, mobile, name, repeatWhileVisible]);
+  }, [desktop, mobile, name, repeatWhileVisible, shouldNativeLoop]);
   return (
     <figure ref={rootRef} className={className} data-landing-motion data-motion-name={name} data-motion-repeat={repeatWhileVisible ? "visible" : "twice"}>
       <img data-motion-poster src={poster} width={480} height={854} alt={posterAlt} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} decoding="async" />
-      <video id={id} aria-hidden="true" data-mobile={mobile} data-desktop={desktop} muted playsInline preload="none" />
+      <video id={id} aria-hidden="true" data-mobile={mobile} data-desktop={desktop} muted playsInline preload="none" loop={shouldNativeLoop} />
       <button className="motion-control" data-motion-control type="button" aria-controls={id} aria-pressed="false" hidden><span data-motion-icon aria-hidden="true">▷</span><span data-motion-label>영상 보기</span></button>
       <span className="motion-status" data-motion-status aria-live="polite" />
     </figure>
