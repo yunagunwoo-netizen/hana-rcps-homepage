@@ -55,12 +55,39 @@ const result={origin,scope:'actual Next production routes, viewport emulation',r
   page.on('request',request=>{if(/\.mp4/.test(request.url()))videos.push(request.url());});
   await page.goto(origin+'/',{waitUntil:'load'});await page.waitForFunction(()=>document.querySelector('video').currentTime>.1);
   assert(videos.length>0);assert(videos.every(url=>url.endsWith('ping-desktop-v1.mp4')));result.desktopAutoSingleSource=true;
-  await page.waitForFunction(()=>document.querySelector('[data-landing-motion]').dataset.motionState==='finished',{timeout:15000});
-  assert(await page.locator('video').evaluate(video=>video.paused));
-  const replay=page.locator('[data-motion-control]');assert.equal(await replay.getAttribute('aria-pressed'),'false');
-  await replay.click();await page.waitForFunction(()=>document.querySelector('video').currentTime>.1);await replay.click();
-  assert(await page.locator('video').evaluate(video=>video.paused));result.twoLoopsThenReplayAndPause=true;
+  assert.equal(await page.locator('[data-landing-motion]').getAttribute('data-motion-repeat'),'visible');
+  await page.locator('video').evaluate(video=>{video.dataset.qaEnded='0';video.addEventListener('ended',()=>{video.dataset.qaEnded=String(Number(video.dataset.qaEnded)+1);});});
+  await page.waitForFunction(()=>Number(document.querySelector('video').dataset.qaEnded)>=2&&!document.querySelector('video').paused,null,{timeout:15000});
+  result.companyContinuesAfterTwoLoops=true;
+  await page.locator('#about').scrollIntoViewIfNeeded();await page.waitForFunction(()=>document.querySelector('video').paused);
+  await page.evaluate(()=>scrollTo(0,0));await page.waitForFunction(()=>!document.querySelector('video').paused);result.outOfViewPauseAndResume=true;
+  // Simulate the standard visibility event in a fresh QA page; no user's browser state is changed.
+  await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,get:()=>document.body.dataset.qaHidden==='true'});document.body.dataset.qaHidden='true';document.dispatchEvent(new Event('visibilitychange'));});
+  await page.waitForFunction(()=>document.querySelector('video').paused);
+  await page.evaluate(()=>{document.body.dataset.qaHidden='false';document.dispatchEvent(new Event('visibilitychange'));});
+  await page.waitForFunction(()=>!document.querySelector('video').paused);result.simulatedHiddenTabPauseAndResume=true;
+  const control=page.locator('[data-motion-control]');await control.click();assert(await page.locator('video').evaluate(video=>video.paused));
+  await page.locator('#about').scrollIntoViewIfNeeded();await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(250);
+  assert(await page.locator('video').evaluate(video=>video.paused));result.manualPausePersists=true;
+  await control.click();await page.waitForFunction(()=>document.querySelector('video').currentTime>.1&&!document.querySelector('video').paused);
+  await page.screenshot({path:path.join(output,'company-continuous-control.png')});
+  await control.click();
   await context.close();
+  for(const policy of ['mobile','saveData']){
+   const policyContext=await browser.newContext({viewport:{width:policy==='mobile'?375:1280,height:900}});
+   if(policy==='saveData')await policyContext.addInitScript(()=>{const connection=new EventTarget();connection.saveData=true;Object.defineProperty(navigator,'connection',{configurable:true,value:connection});});
+   const policyPage=await policyContext.newPage();await policyPage.goto(origin+'/',{waitUntil:'load'});
+   await policyPage.waitForFunction(()=>!document.querySelector('[data-motion-control]').hidden);await policyPage.waitForTimeout(250);
+   assert.equal(await policyPage.locator('video').getAttribute('src'),null,policy+' autoplay must stay blocked');
+   await policyPage.locator('[data-motion-control]').click();await policyPage.waitForFunction(()=>document.querySelector('video').currentTime>.1);
+   await policyPage.locator('[data-motion-control]').click();assert(await policyPage.locator('video').evaluate(video=>video.paused));
+   result[policy+'ManualPlaybackOnly']=true;await policyContext.close();
+  }
+  const dangContext=await browser.newContext({viewport:{width:1280,height:900},reducedMotion:'reduce'}),dangPage=await dangContext.newPage();
+  await dangPage.goto(origin+'/dangitalk',{waitUntil:'load'});const dangMotion=dangPage.locator('[data-landing-motion]');assert.equal(await dangMotion.getAttribute('data-motion-repeat'),'twice');
+  await dangMotion.scrollIntoViewIfNeeded();await dangMotion.locator('button').click();
+  await dangPage.waitForFunction(()=>document.querySelector('[data-landing-motion]').dataset.motionState==='finished',null,{timeout:15000});
+  assert(await dangPage.locator('video').evaluate(video=>video.paused));result.dangStillStopsAfterTwoLoops=true;await dangContext.close();
   for(const [from,to] of [['/dangitalk.html','/dangitalk'],['/dang-v7.html','/dangitalk'],['/index.html','/'],['/ping.html','https://ping.ai.kr/']]){const response=await fetch(origin+from,{redirect:'manual'});assert.equal(response.status,308);assert(response.headers.get('location').endsWith(to));}
   const range=await fetch(origin+'/renewal/assets/landing-motion/dang-mobile-v2.mp4',{headers:{Range:'bytes=0-1023'}});assert.equal(range.status,206);assert.equal((await range.arrayBuffer()).byteLength,1024);result.mediaRange=true;
   assert((await(await fetch(origin+'/sitemap.xml')).text()).includes('https://hanarcps.com/dangitalk'));

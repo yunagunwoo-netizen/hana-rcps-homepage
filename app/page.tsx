@@ -28,7 +28,7 @@ export default function Home() {
         <div className="hero-art">
           <div className="art-orbit orbit-one" aria-hidden="true"></div><div className="art-orbit orbit-two" aria-hidden="true"></div>
           <span className="art-word art-word-ping" aria-hidden="true">PING<span>사진으로 나누는 안부</span></span>
-          <LandingMotion id="company-family-video" name="가족의 일상 애니메이션" className="brand-motion" poster="/renewal/assets/landing-motion/ping-poster-v1.webp" posterAlt="부모와 아이가 강아지와 함께 웃는 가족 애니메이션" mobile="/renewal/assets/landing-motion/ping-mobile-v1.mp4" desktop="/renewal/assets/landing-motion/ping-desktop-v1.mp4" priority />
+          <LandingMotion id="company-family-video" name="가족의 일상 애니메이션" className="brand-motion" poster="/renewal/assets/landing-motion/ping-poster-v1.webp" posterAlt="부모와 아이가 강아지와 함께 웃는 가족 애니메이션" mobile="/renewal/assets/landing-motion/ping-mobile-v1.mp4" desktop="/renewal/assets/landing-motion/ping-desktop-v1.mp4" priority repeatWhileVisible />
           <span className="art-word art-word-dang" aria-hidden="true">댕이톡<span>우리 가족만의 대화</span></span>
           <p className="art-caption">작은 순간이, 우리를 이어주니까.</p>
         </div>
