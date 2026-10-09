@@ -5,7 +5,7 @@ if(!process.env.PREVIEW_PLAYWRIGHT_ROOT)throw new Error('Set PREVIEW_PLAYWRIGHT_
 const {chromium}=require(process.env.PREVIEW_PLAYWRIGHT_ROOT);
 const origin=(process.env.RENEWAL_ORIGIN||'http://127.0.0.1:48220').replace(/\/$/,'');
 const output=path.resolve(__dirname,'../docs/renewal/production/qa',process.env.RENEWAL_QA_LABEL||'local');fs.mkdirSync(output,{recursive:true});
-const result={origin,scope:'actual Next production routes, viewport emulation',runs:[],errors:[]};
+const result={origin,scope:'actual Next production routes, viewport emulation',runs:[],avatarChecks:[],errors:[]};
 (async()=>{const browser=await chromium.launch({channel:'chrome',headless:true,chromiumSandbox:true});result.browser=browser.version();
  try{
   for(const width of [1280,768,375,320]){
@@ -30,6 +30,10 @@ const result={origin,scope:'actual Next production routes, viewport emulation',r
      assert((await page.locator('.dheader .dlogo img').getAttribute('src')).endsWith('dangitalk-dubi-d.webp'));
      assert.equal(await page.locator('input[type=file]').count(),0);
      assert(text.includes('아직 구현되지 않았습니다'));
+     const avatars=await page.locator('.avatar-example-grid img').evaluateAll(images=>images.map(image=>{const box=image.getBoundingClientRect();return{width:box.width,height:box.height,naturalWidth:image.naturalWidth,naturalHeight:image.naturalHeight};}));
+     assert.equal(avatars.length,5);assert(avatars.every(image=>image.width>0&&Math.abs(image.width-image.height)<1),'Avatar images must remain circular, without stretching: '+JSON.stringify(avatars));
+     result.avatarChecks.push({width,avatars});
+     if(width===1280||width===375){await page.locator('#ways').screenshot({path:path.join(output,'avatar-section-'+width+'.png')});await page.locator('.avatar-example-grid').screenshot({path:path.join(output,'avatar-row-'+width+'.png')});}
      await page.getByRole('tab',{name:/이름·견종·테마/}).click();assert((await page.getByRole('tabpanel').locator('img').getAttribute('src')).endsWith('dang-theme.jpg'));
      await page.getByRole('tab',{name:/이름·견종·테마/}).press('Home');assert((await page.getByRole('tabpanel').locator('img').getAttribute('src')).endsWith('dang-family.jpg'));
      if(width===375){const motion=page.locator('[data-landing-motion]');await motion.scrollIntoViewIfNeeded();await motion.locator('button').click();await page.waitForFunction(()=>document.querySelector('video').currentTime>.1);assert((await motion.locator('video').getAttribute('src')).endsWith('dang-mobile-v2.mp4'));await motion.locator('button').click();assert(await motion.locator('video').evaluate(video=>video.paused));assert.equal(new Set(videoRequests).size,1);}
