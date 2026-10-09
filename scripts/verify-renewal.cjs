@@ -25,9 +25,11 @@ const result={origin,scope:'actual Next production routes, viewport emulation',r
     assert.equal(new URL(await page.locator('link[rel=canonical]').getAttribute('href')).href,new URL('https://hanarcps.com'+(route==='/'?'/':route)).href);
     if(route==='/'){
      assert((await page.locator('.hero-ping-link').getAttribute('href')).startsWith('https://ping.ai.kr/'));
+     assert.equal(await page.locator('[data-landing-motion]').getAttribute('data-motion-controls'),'minimal');
      if(width<700){await page.locator('.menu-button').click();assert.equal(await page.locator('.menu-button').getAttribute('aria-expanded'),'true');await page.keyboard.press('Escape');assert.equal(await page.locator('.menu-button').getAttribute('aria-expanded'),'false');assert(await page.locator('.menu-button').evaluate(i=>i===document.activeElement));}
     }else{
      assert((await page.locator('.dheader .dlogo img').getAttribute('src')).endsWith('dangitalk-dubi-d.webp'));
+     assert.equal(await page.locator('[data-landing-motion]').getAttribute('data-motion-controls'),'overlay');
      assert.equal(await page.locator('input[type=file]').count(),0);
      assert((await page.locator('[data-motion-poster]').getAttribute('src')).endsWith('dang-poster-v4.webp'));
      assert(text.includes('아직 구현되지 않았습니다'));
@@ -67,12 +69,18 @@ const result={origin,scope:'actual Next production routes, viewport emulation',r
   await page.waitForFunction(()=>document.querySelector('video').paused);
   await page.evaluate(()=>{document.body.dataset.qaHidden='false';document.dispatchEvent(new Event('visibilitychange'));});
   await page.waitForFunction(()=>!document.querySelector('video').paused);result.simulatedHiddenTabPauseAndResume=true;
-  const control=page.locator('[data-motion-control]');await control.click();assert(await page.locator('video').evaluate(video=>video.paused));
+  const control=page.locator('[data-motion-control]');
+  result.companyControlAppearance=await control.evaluate(button=>{const style=getComputedStyle(button),box=button.getBoundingClientRect(),frame=button.closest('figure').getBoundingClientRect();return{background:style.backgroundColor,border:style.borderTopWidth,padding:style.paddingTop,labelsHidden:[...button.children].every(child=>getComputedStyle(child).display==='none'),width:box.width,height:box.height,frameWidth:frame.width,frameHeight:frame.height};});
+  assert.equal(result.companyControlAppearance.background,'rgba(0, 0, 0, 0)');assert.equal(result.companyControlAppearance.border,'0px');assert.equal(result.companyControlAppearance.padding,'0px');assert.equal(result.companyControlAppearance.labelsHidden,true);assert(Math.abs(result.companyControlAppearance.width-result.companyControlAppearance.frameWidth)<1);assert(Math.abs(result.companyControlAppearance.height-result.companyControlAppearance.frameHeight)<1);
+  await control.focus();await control.press('Space');assert(await page.locator('video').evaluate(video=>video.paused));assert.equal(await control.evaluate(button=>getComputedStyle(button).outlineStyle),'solid');
   await page.locator('#about').scrollIntoViewIfNeeded();await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(250);
   assert(await page.locator('video').evaluate(video=>video.paused));result.manualPausePersists=true;
-  await control.click();await page.waitForFunction(()=>document.querySelector('video').currentTime>.1&&!document.querySelector('video').paused);
-  await page.screenshot({path:path.join(output,'company-continuous-control.png')});
+  await control.press('Enter');await page.waitForFunction(()=>document.querySelector('video').currentTime>.1&&!document.querySelector('video').paused);result.companyKeyboardToggle=true;
+  await control.click();assert(await page.locator('video').evaluate(video=>video.paused));await control.click();await page.waitForFunction(()=>!document.querySelector('video').paused);result.companyVideoClickToggle=true;
+  await page.locator('h1').click();
+  await page.screenshot({path:path.join(output,'company-without-pause-bar.png')});
   await control.click();
+  await page.locator('video').evaluate(video=>video.dispatchEvent(new Event('error')));assert.equal(await page.locator('[data-landing-motion]').getAttribute('data-motion-state'),'error');assert(await page.locator('[data-motion-label]').isVisible());result.companySimulatedErrorRestoresPlayButton=true;
   await context.close();
   for(const policy of ['mobile','saveData']){
    const policyContext=await browser.newContext({viewport:{width:policy==='mobile'?375:1280,height:900}});
@@ -82,7 +90,9 @@ const result={origin,scope:'actual Next production routes, viewport emulation',r
     await policyPage.goto(origin+route,{waitUntil:'load'});await policyPage.locator('[data-landing-motion]').scrollIntoViewIfNeeded();
     await policyPage.waitForFunction(()=>!document.querySelector('[data-motion-control]').hidden);await policyPage.waitForTimeout(250);
     assert.equal(await policyPage.locator('video').getAttribute('src'),null,route+policy+' autoplay must stay blocked');
+    if(route==='/'){assert(await policyPage.locator('[data-motion-label]').isVisible());if(policy==='mobile')await policyPage.screenshot({path:path.join(output,'company-mobile-play-button.png')});}
     await policyPage.locator('[data-motion-control]').click();await policyPage.waitForFunction(()=>document.querySelector('video').currentTime>.1);
+    if(route==='/'){assert(!(await policyPage.locator('[data-motion-label]').isVisible()));if(policy==='mobile')await policyPage.screenshot({path:path.join(output,'company-mobile-no-pause-bar.png')});}
     if(route==='/dangitalk'){assert(await policyPage.locator('video').evaluate(video=>video.loop&&video.duration===2&&video.muted));}
     await policyPage.locator('[data-motion-control]').click();assert(await policyPage.locator('video').evaluate(video=>video.paused));
     result[(route==='/dangitalk'?'dang':'')+policy+'ManualPlaybackOnly']=true;

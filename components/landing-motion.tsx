@@ -2,10 +2,10 @@
 /* eslint-disable @next/next/no-img-element -- A pre-sized poster must remain visible without JavaScript. */
 import { useEffect, useRef } from "react";
 
-type Props = { id: string; name: string; poster: string; posterAlt: string; mobile: string; desktop: string; className?: string; priority?: boolean; repeatWhileVisible?: boolean; nativeLoop?: boolean };
+type Props = { id: string; name: string; poster: string; posterAlt: string; mobile: string; desktop: string; className?: string; priority?: boolean; repeatWhileVisible?: boolean; nativeLoop?: boolean; minimalControls?: boolean };
 type Connection = EventTarget & { saveData?: boolean };
 
-export default function LandingMotion({ id, name, poster, posterAlt, mobile, desktop, className = "motion-card", priority = false, repeatWhileVisible = false, nativeLoop = false }: Props) {
+export default function LandingMotion({ id, name, poster, posterAlt, mobile, desktop, className = "motion-card", priority = false, repeatWhileVisible = false, nativeLoop = false, minimalControls = false }: Props) {
   const shouldNativeLoop = nativeLoop && repeatWhileVisible;
   const rootRef = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -71,7 +71,7 @@ export default function LandingMotion({ id, name, poster, posterAlt, mobile, des
     return () => { alive = false; request++; observer?.disconnect(); cleanup.forEach(action => action()); video.pause(); video.removeAttribute("src"); video.load(); };
   }, [desktop, mobile, name, repeatWhileVisible, shouldNativeLoop]);
   return (
-    <figure ref={rootRef} className={className} data-landing-motion data-motion-name={name} data-motion-repeat={repeatWhileVisible ? "visible" : "twice"}>
+    <figure ref={rootRef} className={className} data-landing-motion data-motion-name={name} data-motion-repeat={repeatWhileVisible ? "visible" : "twice"} data-motion-controls={minimalControls ? "minimal" : "overlay"}>
       <img data-motion-poster src={poster} width={480} height={854} alt={posterAlt} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} decoding="async" />
       <video id={id} aria-hidden="true" data-mobile={mobile} data-desktop={desktop} muted playsInline preload="none" loop={shouldNativeLoop} />
       <button className="motion-control" data-motion-control type="button" aria-controls={id} aria-pressed="false" hidden><span data-motion-icon aria-hidden="true">▷</span><span data-motion-label>영상 보기</span></button>
